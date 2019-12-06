@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Layout from './hoc/Layout/Layout';
+import Browse from './containers/Browse/Browse';
+import Discover from './containers/Discover/Discover';
+import CategoryList from './components/CategoryList/CategoryList';
+import ChannelList from './components/ChannelList/ChannelList';
+
+class App extends Component {
+  render () {
+    return (
+      <React.Fragment>
+        <Layout>       
+          <Switch>     
+            <Route path="/" exact component={Discover}></Route>
+            <Route path="/directory" component={Browse}></Route>  
+          </Switch> 
+
+          <Switch>
+            <Route path="/directory" exact component={CategoryList}></Route>
+            <Route path="/directory/all" component={ChannelList}></Route>
+          </Switch>        
+          
+        </Layout>
+      
+      </React.Fragment>     
+    );
+  }  
 }
 
 export default App;

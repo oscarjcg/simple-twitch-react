@@ -1,0 +1,20 @@
+.Item a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.Item {
+    float: left;
+}
+
+.Item a:hover {
+    color: #c466d4;
+}
+
+.Item .active {
+    color: #c466d4;
+    border-bottom: 5px solid #c466d4;
+}
