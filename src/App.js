@@ -4,8 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 import Layout from './hoc/Layout/Layout';
 import Browse from './containers/Browse/Browse';
 import Discover from './containers/Discover/Discover';
-import CategoryList from './components/CategoryList/CategoryList';
-import ChannelList from './components/ChannelList/ChannelList';
 
 class App extends Component {
   render () {
@@ -15,13 +13,7 @@ class App extends Component {
           <Switch>     
             <Route path="/" exact component={Discover}></Route>
             <Route path="/directory" component={Browse}></Route>  
-          </Switch> 
-
-          <Switch>
-            <Route path="/directory" exact component={CategoryList}></Route>
-            <Route path="/directory/all" component={ChannelList}></Route>
-          </Switch>        
-          
+          </Switch>          
         </Layout>
       
       </React.Fragment>     

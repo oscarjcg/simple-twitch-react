@@ -1,0 +1,14 @@
+.MainContainer {
+    width: 150px;
+    margin-right: 15px;
+}
+
+.Item {
+    margin: 0 0 20px 0;
+    color: white; 
+}
+
+.Item:hover {
+    color: #c466d4;
+    cursor: pointer;
+}
