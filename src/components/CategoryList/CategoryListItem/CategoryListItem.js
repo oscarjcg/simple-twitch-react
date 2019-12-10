@@ -1,18 +1,18 @@
 import React from 'react';
 
 import classes from './CategoryListItem.module.css';
-import NavItem from '../../Navigation/NavBar/NavItems/NavItem/NavItem';
 
 const categoryListItem = (props) => (
     <div className={classes.MainContainer}>
         <img 
+            className={classes.Image}
             src={props.image} 
-            alt={props.name} 
-            width="150"
+            alt={props.name}             
+            onClick={() => props.selectCategory(props.name)}
             ></img>    
-        <a 
+        <p             
             className={classes.Item}
-            onClick={props.selectCategory}>{props.name}</a>
+            onClick={() => props.selectCategory(props.name)}>{props.name}</p>
     </div>    
 );
 

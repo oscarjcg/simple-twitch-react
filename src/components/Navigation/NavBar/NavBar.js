@@ -3,9 +3,7 @@ import React from 'react';
 import NavItems from './NavItems/NavItems';
 
 const navBar = (props) => (
-    <header>
-        {/* Logo, Search bar */}
-
+    <header>      
         <nav>      
             <NavItems></NavItems>
         </nav>

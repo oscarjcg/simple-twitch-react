@@ -1,0 +1,20 @@
+.SearchBar {
+    float: left;
+}
+
+.ActivePurple input {    
+    outline: none;
+    background-color: rgb(85, 85, 85);
+    color: white;
+    border-color: transparent;       
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 30px; 
+    
+}
+
+.ActivePurple input:focus {
+    border: 2px solid #c466d4;
+    box-shadow: 0 0 0 1px #c466d4;
+    background-color: black;
+}

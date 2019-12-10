@@ -5,8 +5,9 @@ import NavItem from '../../Navigation/NavBar/NavItems/NavItem/NavItem';
 
 const navTab = (props) => (
     <ul className={classes.List}>
-        <NavItem link="/directory" exact>Categories</NavItem>
-        <NavItem link="/directory/all" exact>Live Channels</NavItem>
+        {props.tabs.map(tab => (
+            <NavItem key={tab.link} link={tab.link} exact>{tab.text}</NavItem>
+        ))}   
     </ul> 
 );
 

@@ -8,12 +8,12 @@ const channelListItem = (props) => (
             src={props.preview}
             alt={props.name}
             width="300"></img>
-        <div>
-            <img 
+        <div className={classes.Details}>
+            <img                 
                 src={props.image} 
                 alt={props.name}
                 height="40px"></img>
-            <a className={classes.ChannelName}>{props.name}</a>
+            <p className={classes.ChannelName}>{props.name}</p>
         </div>
     </div>          
 );
