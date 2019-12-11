@@ -5,7 +5,7 @@ import classes from './Discover.module.css';
 class Discover extends Component {
 
     render () {
-        let headerHeight = 54;
+        let headerHeight = 55;
         let height = window.innerHeight - headerHeight;
 
         return (

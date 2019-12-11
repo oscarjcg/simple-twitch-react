@@ -18,3 +18,14 @@
     box-shadow: 0 0 0 1px #c466d4;
     background-color: black;
 }
+
+.Icon {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-left: 2px;
+    cursor: pointer;
+}
+
+.Icon:hover path:nth-child(1) {
+    fill: grey;
+}

@@ -11,7 +11,7 @@ class GameCont extends Component {
     }
 
     render () {
-        let headerHeight = 54;
+        let headerHeight = 55;
         let height = window.innerHeight - headerHeight;
         let category = null;
         if (this.props.categories) {

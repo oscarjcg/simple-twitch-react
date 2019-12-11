@@ -7,7 +7,7 @@ import classes from './Browse.module.css';
 import NavTab from '../../components/Navigation/NavTab/NavTab';
 import CategoryList from '../../components/CategoryList/CategoryList';
 import ChannelList from '../../components/ChannelList/ChannelList';
-import SearchBar from '../../components/UI/SearchBar/SearchBar';    
+import Filter from '../../components/UI/Filter/Filter';   
 
 class Browse extends Component {
 
@@ -21,7 +21,7 @@ class Browse extends Component {
     }
 
     render () {
-        let headerHeight = 54;
+        let headerHeight = 55;
         let height = window.innerHeight - headerHeight;
 
         let tabs = [
@@ -33,12 +33,8 @@ class Browse extends Component {
             <div className={classes.Content} style={{height: height}}>
                 <h1 className={classes.Title}>Browse</h1>
                 <NavTab tabs={tabs}></NavTab>
-                <h2 className={classes.Title}>Search</h2>
-                {/* <div>
-                    <SearchBar></SearchBar>
-                </div> */}
-                
-
+                <Filter></Filter>                
+                    
                 <Switch>
                     <Route 
                         path={this.props.match.url} 
