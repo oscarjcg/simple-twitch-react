@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import classes from './Discover.module.css';
+import classes from './ChannelCont.module.css';
+import Channel from '../../components/Channel/Channel';
 
-class Discover extends Component {
+class ChannelCont extends Component {
 
-    render () {
+    render() {
         let height = window.innerHeight - this.props.headerHeight;
 
         return (
             <div className={classes.Content} style={{height: height}}>
-                <h1 className={classes.Title}>Discover</h1>            
-            </div>          
+                <Channel></Channel>
+            </div>
         );
     }
 }
@@ -22,4 +23,4 @@ const mapStateToProps = state => {
     };
   };
 
-export default connect(mapStateToProps)(Discover);
+export default connect(mapStateToProps)(ChannelCont);

@@ -19,3 +19,8 @@
     border-bottom: 3px solid #c466d4;
     border-top: 3px solid transparent; 
 }
+
+.Item :not(.active) {
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid transparent;      
+}

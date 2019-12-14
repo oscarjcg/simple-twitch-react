@@ -10,10 +10,14 @@ const channelListItem = (props) => (
             width="300"></img>
         <div className={classes.Details}>
             <img                 
-                src={props.image} 
+                src={props.image}
                 alt={props.name}
                 height="40px"></img>
-            <p className={classes.ChannelName}>{props.name}</p>
+            <p 
+                onClick={() => props.selectChannel(props.name)}
+                className={classes.ChannelName}>
+                    {props.name}
+            </p>
         </div>
     </div>          
 );

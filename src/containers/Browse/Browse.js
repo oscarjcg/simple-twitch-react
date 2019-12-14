@@ -20,9 +20,12 @@ class Browse extends Component {
         this.props.history.push('/directory/game/' + id);
     }
 
-    render () {
-        let headerHeight = 55;
-        let height = window.innerHeight - headerHeight;
+    selectChannelHandler = (id) => {     
+        this.props.history.push('/' + id);
+    }
+
+    render () { 
+        let height = window.innerHeight - this.props.headerHeight;
 
         let tabs = [
             {link: "/directory", text: "Categories"},
@@ -45,7 +48,8 @@ class Browse extends Component {
                     <Route 
                         path={this.props.match.url + '/all'}  
                         render={() => <ChannelList
-                                        channels={this.props.channels}></ChannelList>}></Route>
+                                        channels={this.props.channels}
+                                        selectChannel={this.selectChannelHandler}></ChannelList>}></Route>
                     
                 </Switch>
             </div>
@@ -56,7 +60,8 @@ class Browse extends Component {
 const mapStateToProps = state => {
     return {
         categories: state.category.categories,
-        channels: state.channel.channels
+        channels: state.channel.channels,
+        headerHeight: state.userInterface.headerHeight
     };
 };
 

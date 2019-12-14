@@ -10,9 +10,12 @@ class GameCont extends Component {
         this.props.onLoadChannels();
     }
 
-    render () {
-        let headerHeight = 55;
-        let height = window.innerHeight - headerHeight;
+    selectChannelHandler = (id) => {     
+        this.props.history.push('/' + id);
+    }
+
+    render () {      
+        let height = window.innerHeight - this.props.headerHeight;
         let category = null;
         if (this.props.categories) {
             category = 
@@ -26,7 +29,8 @@ class GameCont extends Component {
                 {category ? <Game 
                                 height= {height}
                                 category={category}
-                                channels={this.props.channels}></Game>: null}
+                                channels={this.props.channels}
+                                selectChannel={this.selectChannelHandler}></Game>: null}
             </div>            
         );
     }
@@ -35,7 +39,8 @@ class GameCont extends Component {
 const mapStateToProps = state => {
     return {
         categories: state.category.categories,
-        channels: state.channel.channels
+        channels: state.channel.channels,
+        headerHeight: state.userInterface.headerHeight
     };
 };
 

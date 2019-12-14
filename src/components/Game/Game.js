@@ -37,7 +37,9 @@ const game = (props) => {
         {header}
         <NavTab tabs={tabs}></NavTab>
         <Filter></Filter>   
-        <ChannelList channels={props.channels}></ChannelList>
+        <ChannelList 
+            channels={props.channels}
+            selectChannel={props.selectChannel}></ChannelList>
     </div>
     );
 };

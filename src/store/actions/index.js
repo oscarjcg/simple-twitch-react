@@ -5,3 +5,7 @@ export {
 export {
     fetchChannels
 } from './channel';
+
+export {
+    updateHeaderHeight
+} from './userInterface';

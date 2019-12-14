@@ -5,16 +5,26 @@ import NavBar from '../../components/Navigation/NavBar/NavBar';
 
 class Layout extends Component {
 
-    render () {
+    constructor(props) {
+        super(props);
+        this.header = React.createRef();
+    }
+
+    componentDidMount() { 
+        this.props.headerHeight(this.header.current.clientHeight);
+    }
+
+    render () {   
         return (
-            <React.Fragment>
-                <NavBar></NavBar>
+            <React.Fragment>   
+                <div ref={this.header}>
+                    <NavBar></NavBar>
+                </div>                       
                 
                 <main className={classes.Content}>
                     {this.props.children}
                 </main>
-            </React.Fragment>
-            
+            </React.Fragment>            
         )
     }
 }

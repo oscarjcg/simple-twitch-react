@@ -9,5 +9,5 @@ const navBar = (props) => (
         </nav>
     </header>
 );
-
+ 
 export default navBar;

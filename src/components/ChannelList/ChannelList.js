@@ -14,7 +14,8 @@ const channelList = (props) => {
                 key={channel.name}
                 name={channel.name}
                 preview={channel.preview}
-                image={channel.image}></ChannelListItem>
+                image={channel.image}
+                selectChannel={props.selectChannel}></ChannelListItem>
         ));
     }
     else {

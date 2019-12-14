@@ -10,13 +10,15 @@ import { BrowserRouter} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import categoryReducer from './store/reducers/category';
 import channelReducer from './store/reducers/channel';
+import userInterfaceReducer from './store/reducers/userInterface';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
 
 const rootReducer = combineReducers({
     category: categoryReducer,
-    channel: channelReducer
+    channel: channelReducer,
+    userInterface: userInterfaceReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(
