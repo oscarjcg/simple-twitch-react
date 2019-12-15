@@ -1,6 +1,7 @@
 import React from 'react';
 
 import classes from './ChannelListItem.module.css';
+import ChannelDetail from '../../Channel/Header/ChannelDetail/ChannelDetail';
 
 const channelListItem = (props) => (    
     <div className={classes.MainContainer}>
@@ -8,17 +9,10 @@ const channelListItem = (props) => (
             src={props.preview}
             alt={props.name}
             width="300"></img>
-        <div className={classes.Details}>
-            <img                 
-                src={props.image}
-                alt={props.name}
-                height="40px"></img>
-            <p 
-                onClick={() => props.selectChannel(props.name)}
-                className={classes.ChannelName}>
-                    {props.name}
-            </p>
-        </div>
+        <ChannelDetail
+            image={props.image}
+            name={props.name}
+            selectChannel={props.selectChannel}></ChannelDetail>
     </div>          
 );
 

@@ -11,6 +11,13 @@ import * as actions from './store/actions/index';
 
 class App extends Component {
 
+  state = {
+    navItems: [
+      {link: '/', text: 'Discover', exact: true},
+      {link: '/directory', text: 'Browse', exact: false}
+    ]
+  }
+
   headerHeightHandler = (height) => { 
     this.props.onUpdateHeaderHeight(height);
   }
@@ -18,7 +25,9 @@ class App extends Component {
   render () {
     return (
       <React.Fragment>
-        <Layout headerHeight={this.headerHeightHandler}>       
+        <Layout 
+          headerHeight={this.headerHeightHandler}
+          navItems={this.state.navItems}>       
           <Switch>     
             <Route path="/" exact component={Discover}></Route>
             <Route path="/directory/game/:category" component={GameCont}></Route>  

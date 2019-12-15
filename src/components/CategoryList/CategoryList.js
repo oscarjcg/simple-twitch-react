@@ -3,10 +3,11 @@ import React from 'react';
 import CategoryListItem from './CategoryListItem/CategoryListItem';
 import classes from './CategoryList.module.css';
 import Spinner from '../UI/Spinner/Spinner';
+import Error from '../UI/Error/Error';
 
 const categoryList = (props) => { 
     let categories = null;
-    let spinner = null;
+    let currentState = null;
     if  (props.categories) {
         categories = 
             props.categories.map(cat => (
@@ -17,13 +18,13 @@ const categoryList = (props) => {
                     selectCategory={props.selectCategory}></CategoryListItem>
             ));   
     } 
-    else {
-        spinner = <Spinner></Spinner>;
-    }
+    else {        
+        currentState = props.error ? <Error></Error> : <Spinner></Spinner>;
+    }    
 
     return (            
         <div className={classes.Container}>  
-            {spinner}        
+            {currentState}        
             {categories}            
         </div>            
     );

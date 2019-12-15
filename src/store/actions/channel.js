@@ -10,6 +10,13 @@ export const fetchChannelsSuccess = (channels) => {
     }
 };
 
+export const fetchChannelsFail = (error) => {
+    return {
+        type: actionTypes.FETCH_CHANNELS_FAIL,
+        error: error
+    }
+};
+
 export const fetchChannels = () => {
     return dispatch => {
         axios.get('/channels')
@@ -26,7 +33,7 @@ export const fetchChannels = () => {
                 dispatch(fetchChannelsSuccess(channels));
             })
             .catch(err => {
-                console.log(err);
+                dispatch(fetchChannelsFail(err));        
             });
     };
 };

@@ -9,6 +9,13 @@ export const fetchCategoriesSuccess = (categories) => {
     }
 }
 
+export const fetchCategoriesFail = (error) => {
+    return {
+        type: actionsTypes.FETCH_CATEGORIES_FAIL,
+        error: error
+    }
+}
+
 export const fetchCategories = () => {
     return dispatch => {
         axios.get('/categories')
@@ -21,7 +28,7 @@ export const fetchCategories = () => {
                 dispatch(fetchCategoriesSuccess(categories));
             })
             .catch(err => {
-                console.log(err);
+                dispatch(fetchCategoriesFail(err));
             });    
     };    
 }

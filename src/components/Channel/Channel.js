@@ -5,7 +5,9 @@ import Header from './Header/Header';
 
 const channel = (props) => (
     <div>
-        <Header></Header>
+        <Header
+            channel={props.channel}
+            selectChannel={props.selectChannel}></Header>
     </div>
 );
 

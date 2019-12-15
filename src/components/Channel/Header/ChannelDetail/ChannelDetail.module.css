@@ -1,0 +1,15 @@
+.Details {
+    display: flex;
+    align-items: center;
+}
+
+.ChannelName {
+    margin: 0;
+    height: 20px;
+    color: white;
+}
+
+.ChannelName:hover {
+    color: #c466d4;
+    cursor: pointer;
+}

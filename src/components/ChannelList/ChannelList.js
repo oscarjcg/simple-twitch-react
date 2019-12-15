@@ -3,11 +3,12 @@ import React from 'react';
 import ChannelListItem from './ChannelListItem/ChannelListItem';
 import classes from './ChannelList.module.css';
 import Spinner from '../UI/Spinner/Spinner';
+import Error from '../UI/Error/Error';
 
 const channelList = (props) => {
     
     let channels = null;
-    let spinner = null;
+    let currentState = null;
     if (props.channels) {
         channels = props.channels.map(channel => (
             <ChannelListItem
@@ -19,12 +20,12 @@ const channelList = (props) => {
         ));
     }
     else {
-        spinner = <Spinner></Spinner>;
+        currentState = props.error ? <Error></Error> : <Spinner></Spinner>;
     }
             
     return (            
         <div className={classes.MainContainer}>
-            {spinner}
+            {currentState}
             {channels}
         </div>            
     ); 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Game from '../../components/Game/Game';
-import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
+import Error from '../../components/UI/Error/Error';
 
 class GameCont extends Component {
     componentDidMount() {        
@@ -22,15 +23,17 @@ class GameCont extends Component {
                 this.props.categories.find(cat => {
                     return cat.name === this.props.match.params.category;
                 });
-        };        
+        };          
      
         return (
             <div>           
-                {category ? <Game 
-                                height= {height}
-                                category={category}
-                                channels={this.props.channels}
-                                selectChannel={this.selectChannelHandler}></Game>: null}
+                <Game 
+                    height= {height}
+                    category={category}
+                    channels={this.props.channels}
+                    selectChannel={this.selectChannelHandler}
+                    channelError={this.props.categoryError}
+                    categoryError={this.props.channelError}></Game>
             </div>            
         );
     }
@@ -40,7 +43,9 @@ const mapStateToProps = state => {
     return {
         categories: state.category.categories,
         channels: state.channel.channels,
-        headerHeight: state.userInterface.headerHeight
+        headerHeight: state.userInterface.headerHeight,
+        channelError: state.channel.error,
+        categoryError: state.category.error
     };
 };
 

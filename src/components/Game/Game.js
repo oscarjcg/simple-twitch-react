@@ -6,6 +6,7 @@ import NavTab from '../Navigation/NavTab/NavTab';
 import { withRouter } from 'react-router-dom';
 import Filter from '../UI/Filter/Filter';
 import Spinner from '../UI/Spinner/Spinner';
+import Error from '../UI/Error/Error';
 
 const game = (props) => {
     let tabs = [
@@ -28,8 +29,8 @@ const game = (props) => {
         </div>
         ;
     }
-    else {
-        header = <Spinner></Spinner>;
+    else {        
+        header = props.categoryError ? <Error></Error> : <Spinner></Spinner>;
     }
 
     return (
@@ -39,7 +40,8 @@ const game = (props) => {
         <Filter></Filter>   
         <ChannelList 
             channels={props.channels}
-            selectChannel={props.selectChannel}></ChannelList>
+            selectChannel={props.selectChannel}
+            error={props.channelError}></ChannelList>
     </div>
     );
 };

@@ -18,7 +18,7 @@ class Layout extends Component {
         return (
             <React.Fragment>   
                 <div ref={this.header}>
-                    <NavBar></NavBar>
+                    <NavBar items={this.props.navItems}></NavBar>
                 </div>                       
                 
                 <main className={classes.Content}>
