@@ -3,9 +3,9 @@ import React from 'react';
 import classes from './Chat.module.css';
 
 const chat = (props) => (
-    <div>
-        <p>Chat</p>
+    <div className={classes.Content}>
+        <p className={classes.Title}>STREAM CHAT</p>
     </div>
 );
 
-export const chat;
+export default chat;

@@ -7,5 +7,6 @@ export {
 } from './channel';
 
 export {
-    updateHeaderHeight
+    updateHeaderHeight,
+    updateHeaderChannelWidth
 } from './userInterface';

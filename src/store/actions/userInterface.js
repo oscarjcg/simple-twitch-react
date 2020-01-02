@@ -10,3 +10,14 @@ export const updateHeaderHeight = (headerHeight) => {
         );
     };    
 };
+
+export const updateHeaderChannelWidth = (width) => {
+    return dispatch => {
+        dispatch(
+            {
+                type: actionTypes.UPDATE_HEADER_CHANNEL_WIDTH,
+                headerChannelWidth: width
+            }
+        );
+    };    
+};

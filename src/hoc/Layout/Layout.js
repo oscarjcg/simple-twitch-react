@@ -7,17 +7,19 @@ class Layout extends Component {
 
     constructor(props) {
         super(props);
-        this.header = React.createRef();
+        this.state = {
+            header: React.createRef()
+        }
     }
 
     componentDidMount() { 
-        this.props.headerHeight(this.header.current.clientHeight);
+        this.props.headerHeight(this.state.header.current.clientHeight);
     }
 
     render () {   
         return (
             <React.Fragment>   
-                <div ref={this.header}>
+                <div ref={this.state.header}>
                     <NavBar items={this.props.navItems}></NavBar>
                 </div>                       
                 
