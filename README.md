@@ -13,7 +13,7 @@
 * **React:**  16.12.0
 * **Redux:** 7.1.3
 
-**Docker**
+**Docker**:
 * Run container with shell
     * `docker compose run --rm -p 3001:3000 st-react bash`
 * Inside container install packages and exit
