@@ -15,11 +15,11 @@
 
 **Docker**
 * Run container with shell
-    * docker compose run --rm -p 3001:3000 st-react bash
+    * `docker compose run --rm -p 3001:3000 st-react bash`
 * Inside container install packages and exit
-	* npm install
-	* exit
+	* `npm install`
+	* `exit`
 * Run docker compose and it will start npm start (http://localhost:3001)
-    * docker compose up
+    * `docker compose up`
 * Delete container (not image and node_modules)
-    * docker compose down
+    * `docker compose down`
