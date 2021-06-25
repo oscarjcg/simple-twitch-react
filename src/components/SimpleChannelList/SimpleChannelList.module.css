@@ -1,0 +1,10 @@
+.Container {
+    background-color: #333;  
+    height: 100%;
+}
+
+.Title {
+    color: white;
+    margin: 0;
+    padding: 20px;
+}

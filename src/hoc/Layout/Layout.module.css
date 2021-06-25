@@ -3,3 +3,14 @@
     color: blue;
     text-align: center;
 }
+
+.Main {
+    display: flex;
+}
+.ChannelsPanel {
+    width: 20%;
+}
+
+.Content {
+    width: 80%;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import classes from './Layout.module.css';
 import NavBar from '../../components/Navigation/NavBar/NavBar';
+import SimpleChannelListCont from '../../containers/SimpleChannelListCont/SimpleChannelListCont'
 
 class Layout extends Component {
 
@@ -21,11 +22,17 @@ class Layout extends Component {
             <React.Fragment>   
                 <div ref={this.state.header}>
                     <NavBar items={this.props.navItems}></NavBar>
-                </div>                       
-                
-                <main className={classes.Content}>
-                    {this.props.children}
-                </main>
+                </div> 
+
+                <div className={classes.Main}>
+                    <div className={classes.ChannelsPanel}>
+                        <SimpleChannelListCont></SimpleChannelListCont>
+                    </div>
+                    <main className={classes.Content}>
+                        {this.props.children}
+                    </main>
+                </div>
+
             </React.Fragment>            
         )
     }

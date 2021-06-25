@@ -1,0 +1,14 @@
+.Container {
+    display: flex;
+    align-items: center;
+}
+
+.Title {
+    color: white;
+}
+
+.Image {
+    border-radius: 50%; 
+    color: white;
+    margin: 10px;
+}
