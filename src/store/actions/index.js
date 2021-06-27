@@ -10,3 +10,8 @@ export {
     updateHeaderHeight,
     updateHeaderChannelWidth
 } from './userInterface';
+
+export {
+    fetchComments,
+    addComment
+} from './comment';

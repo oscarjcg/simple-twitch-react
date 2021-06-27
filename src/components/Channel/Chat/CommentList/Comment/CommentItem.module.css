@@ -1,0 +1,12 @@
+.CommentContainer {
+    display: flex;       
+}
+
+.CommentContainer p {
+    color: white;
+    padding-left: 7px;
+}
+
+.Comment {
+    word-break: break-all;
+}

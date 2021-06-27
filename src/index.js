@@ -11,6 +11,8 @@ import { Provider } from 'react-redux';
 import categoryReducer from './store/reducers/category';
 import channelReducer from './store/reducers/channel';
 import userInterfaceReducer from './store/reducers/userInterface';
+import commentReducer from './store/reducers/comment';
+
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
@@ -18,7 +20,8 @@ const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX
 const rootReducer = combineReducers({
     category: categoryReducer,
     channel: channelReducer,
-    userInterface: userInterfaceReducer
+    userInterface: userInterfaceReducer,
+    comment: commentReducer,
 });
 
 const store = createStore(rootReducer, composeEnhancers(

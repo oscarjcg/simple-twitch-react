@@ -21,8 +21,7 @@ export const fetchCategories = () => {
         axios.get('/categories')
             .then(res => {                
                 let categories = res.data.map(cat => {
-                    let image = 'data:image/jpeg;base64, ' + new Buffer(cat.image.data.data).toString('base64');              
-                    return updateObject(cat, {image: image});               
+                    return updateObject(cat, {});               
                 });            
 
                 dispatch(fetchCategoriesSuccess(categories));

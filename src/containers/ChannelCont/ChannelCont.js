@@ -14,6 +14,7 @@ class ChannelCont extends Component {
 
     componentDidMount() {   
         this.props.onLoadChannels();
+        this.props.onLoadComments();
     }
 
     calculateVideoHeight = (width, ratio) => {
@@ -26,7 +27,15 @@ class ChannelCont extends Component {
 
     headerChannelWidthHandler = (width) => { 
         this.props.onUpdateHeaderChannelWidth(width);
-    }        
+    }    
+    
+    addCommentHandler = (e) => {     
+
+        if (e.keyCode == 13) {// Enter
+            // Add comment
+            this.props.onAddComment(e.target.value);
+        }
+    }
 
     render() {
         let height = window.innerHeight - this.props.headerHeight;
@@ -38,6 +47,11 @@ class ChannelCont extends Component {
                     return ch.name === this.props.match.params.channel;
                 });
         };        
+
+        let comments = null;
+        if (this.props.comments) {
+            comments = this.props.comments;
+        }
 
         let currentState = this.props.channelError ? <Error></Error> : <Spinner></Spinner>;
 
@@ -51,7 +65,9 @@ class ChannelCont extends Component {
                         videoHeight={this.props.headerChannelWidth 
                             ? this.calculateVideoHeight(this.props.headerChannelWidth, RATIO_16_9) : '337'}
                         selectChannel={this.selectChannelHandler}
-                        headerChannelWidth={this.headerChannelWidthHandler}></Channel> 
+                        headerChannelWidth={this.headerChannelWidthHandler}
+                        comments={comments}
+                        addComment={this.addCommentHandler}></Channel> 
                     : currentState}                
             </div>
         );
@@ -63,13 +79,16 @@ const mapStateToProps = state => {
         headerHeight: state.userInterface.headerHeight,
         channels: state.channel.channels,
         channelError: state.channel.error,
-        headerChannelWidth: state.userInterface.headerChannelWidth
+        headerChannelWidth: state.userInterface.headerChannelWidth,
+        comments: state.comment.comments
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {   
         onLoadChannels: () => dispatch(actions.fetchChannels()),
+        onLoadComments: () => dispatch(actions.fetchComments()),
+        onAddComment: (comment) => dispatch(actions.addComment(comment)),
         onUpdateHeaderChannelWidth: (width) => dispatch(actions.updateHeaderChannelWidth(width))
     };
 };

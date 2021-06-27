@@ -1,0 +1,31 @@
+.InputCommentContainer {
+    text-align: center; 
+    flex: 0 1 auto;
+    background-color: black;    
+    
+}
+
+.InputCommentContainer input {
+    display:inline-block;        
+    height: 40px;
+    border-radius: 5px;
+    width: 80%;
+}   
+
+.InputCommentContainer p {
+    color: white;
+}
+
+.ActivePurple {           
+    background-color: rgb(85, 85, 85);
+    color: white;
+    border: 2px solid transparent; 
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.ActivePurple:focus {    
+    border: 2px solid #c466d4;
+    box-shadow: 0 0 0 1px #c466d4;
+    background-color: black;      
+}

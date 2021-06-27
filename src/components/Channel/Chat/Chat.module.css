@@ -1,8 +1,22 @@
 .Content {
+    background-color: black;    
+    display: flex;
+    flex-flow: column;
     
     width: 30%;    
 }
 
 .Title {
-    color: white; 
+    padding: 15px;
+    color: white;
+    margin-bottom: 0px;
+}
+
+.Header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(34, 34, 34);
+    border: 1px solid black; 
+    flex: 0 1 auto;
 }

@@ -44,8 +44,6 @@ class Channel extends Component {
         clearInterval(this.state.myInterval)
     }
 
-    
-
     render() {
         const opts = {
             height: this.props.videoHeight,
@@ -70,7 +68,9 @@ class Channel extends Component {
                     {this.state.player ? <p className={classes.Info}>{this.state.intervalCurrentMS}</p> : null}
                 </div>
                 
-                <Chat></Chat>
+                <Chat 
+                    comments={this.props.comments}
+                    addComment={this.props.addComment}></Chat>
                 
             </div>
         );
