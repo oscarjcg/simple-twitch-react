@@ -6,6 +6,7 @@ import Channel from '../../components/Channel/Channel';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Error from '../../components/UI/Error/Error';
+import ChatClientSocket from "../../components/Channel/ChatClientSocket/ChatClientSocket";
 
 const RATIO_16_9 = [16, 9];
 const RATIO_4_3 = [4, 3];
@@ -68,7 +69,10 @@ class ChannelCont extends Component {
                         headerChannelWidth={this.headerChannelWidthHandler}
                         comments={comments}
                         addComment={this.addCommentHandler}></Channel> 
-                    : currentState}                
+                    : currentState}          
+
+                    {channel ? <ChatClientSocket></ChatClientSocket> : null}      
+
             </div>
         );
     }
