@@ -2,6 +2,7 @@ import axios from '../../axios/axios-category';
 import * as actionsTypes from './actionTypes';
 import { updateObject } from '../../shared/utility';
 
+// Fetch comments
 export const fetchCommentsSuccess = (comments) => {
     return {
         type: actionsTypes.FETCH_COMMENTS_SUCCESS,
@@ -16,10 +17,10 @@ export const fetchCommentsFail = (error) => {
     }
 };
 
-export const fetchComments = () => {
+export const fetchComments = (channelId) => {
     return dispatch => {
-        /*
-        axios.get('/comments')
+        console.log("fetchComments");
+        axios.get('/comments/' + channelId)
             .then(res => {                
                 let comments = res.data.map(comment => {
                     return comment;               
@@ -30,30 +31,51 @@ export const fetchComments = () => {
             .catch(err => {
                 dispatch(fetchCommentsFail(err));
             });         
-        */
+    };    
+};
 
-        // Test
-        let comments = [
-            {"username" : "user1", "time" : "1", "comment" : "dasdas1"},
-            {"username" : "user2", "time" : "5", "comment" : "dsdsa sd asas sda sdas2"},
-            {"username" : "user3", "time" : "6", "comment" : "dsdsa sd s das dassd asa3"}
+// Add comment
+export const addCommentSuccess = () => {
+    return {
+        type: actionsTypes.ADD_COMMENT_SUCCESS
+    }
+};
 
-        ]
-        dispatch(fetchCommentsSuccess(comments));
+export const addCommentFail = (error) => {
+    return {
+        type: actionsTypes.ADD_COMMENT_FAIL,
+        error: error
+    }
+};
+
+export const addComment = (channelId, comment, author) => {
+    return dispatch => {
+        axios.post('/comments', {
+            channel_id: channelId,
+            author: author,
+            comment:comment
+        })
+        .then(res => {                
+            console.log(res.data);       
+
+            dispatch(addCommentSuccess());
+        })
+        .catch(err => {
+            dispatch(addCommentFail(err));
+        });  
 
     };    
 };
 
-export const addComment = (comment) => {
-    return dispatch => {
-
-
-        // Test
+// Request update
+export const updateComments = (update) => {
     
-        dispatch({
-            type: actionsTypes.ADD_COMMENT_SUCCESS,
-            comment: comment
-        });
-
+    return dispatch => {
+        dispatch(
+            {
+                type: actionsTypes.UPDATE_COMMENTS_SUCCESS,
+                updateComments: update
+            }
+        );
     };    
 };

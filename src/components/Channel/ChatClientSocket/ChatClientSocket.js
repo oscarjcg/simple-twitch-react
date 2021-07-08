@@ -3,23 +3,20 @@ import socketIOClient from "socket.io-client";
 import classes from './ChatClientSocket.module.css';
 
 
-const ENDPOINT = "http://localhost:3000";
+const ENDPOINT = "http://st-node.oscarcatarigutierrez.com:3000";
 
-export default function ChatClientSocket() {
-    const [totalConnections, setTotalConnections] = useState(0);
-
+export default function ChatClientSocket(props) {
+    const [totalConnections, setTotalConnections,] = useState(0);
 
     useEffect(() => {
         const socket = socketIOClient(ENDPOINT);
 
-        socket.on("test", data => {
-            console.log("test");
+        socket.on("totalConnections", data => {
+            setTotalConnections(data);
         });
 
-        socket.on("totalConnections", data => {
-            console.log("totalConnections");
-            console.log(data);
-            setTotalConnections(data);
+        socket.on("newMessage", data => {
+            props.onUpdatedComments(null);
         });
 
         return () => socket.disconnect();

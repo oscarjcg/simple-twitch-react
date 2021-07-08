@@ -4,6 +4,7 @@ import classes from './Channel.module.css';
 import Header from './Header/Header';
 import YouTube from 'react-youtube';
 import Chat from './Chat/Chat';
+import Viewer3DModel from './Viewer3DModel/Viewer3DModel';
 
 class Channel extends Component {
 
@@ -59,12 +60,19 @@ class Channel extends Component {
                     <Header
                         channel={this.props.channel}
                         selectChannel={this.props.selectChannel}></Header>
+                    {/*
                     <YouTube
                         videoId={this.state.video}
                         opts={opts}
                         onReady={this.onReady}
                         onStateChange={this.onStateChange}
                     />
+                    */}
+
+                    <Viewer3DModel 
+                        height={this.props.videoHeight} 
+                        width={this.props.videoWidth}></Viewer3DModel>
+
                     {this.state.player ? <p className={classes.Info}>{this.state.intervalCurrentMS}</p> : null}
                 </div>
                 

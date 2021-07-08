@@ -15,7 +15,7 @@ class ChannelCont extends Component {
 
     componentDidMount() {   
         this.props.onLoadChannels();
-        this.props.onLoadComments();
+        this.props.onUpdatedComments(null);
     }
 
     calculateVideoHeight = (width, ratio) => {
@@ -34,7 +34,14 @@ class ChannelCont extends Component {
 
         if (e.keyCode == 13) {// Enter
             // Add comment
-            this.props.onAddComment(e.target.value);
+            let channel = null;
+            if (this.props.channels) {
+                channel = 
+                    this.props.channels.find(ch => {
+                        return ch.name === this.props.match.params.channel;
+                    });
+            };    
+            this.props.onAddComment(channel.id, e.target.value, "ReactApp");
         }
     }
 
@@ -47,6 +54,11 @@ class ChannelCont extends Component {
                 this.props.channels.find(ch => {
                     return ch.name === this.props.match.params.channel;
                 });
+
+            if (this.props.updateComments == null) {
+                this.props.onUpdatedComments(true);
+                this.props.onLoadComments(channel.id);
+            }
         };        
 
         let comments = null;
@@ -71,7 +83,7 @@ class ChannelCont extends Component {
                         addComment={this.addCommentHandler}></Channel> 
                     : currentState}          
 
-                    {channel ? <ChatClientSocket></ChatClientSocket> : null}      
+                    {channel ? <ChatClientSocket onUpdatedComments={this.props.onUpdatedComments}></ChatClientSocket> : null}      
 
             </div>
         );
@@ -84,16 +96,18 @@ const mapStateToProps = state => {
         channels: state.channel.channels,
         channelError: state.channel.error,
         headerChannelWidth: state.userInterface.headerChannelWidth,
-        comments: state.comment.comments
+        comments: state.comment.comments,
+        updateComments: state.comment.updateComments
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {   
         onLoadChannels: () => dispatch(actions.fetchChannels()),
-        onLoadComments: () => dispatch(actions.fetchComments()),
-        onAddComment: (comment) => dispatch(actions.addComment(comment)),
-        onUpdateHeaderChannelWidth: (width) => dispatch(actions.updateHeaderChannelWidth(width))
+        onLoadComments: (channelId) => dispatch(actions.fetchComments(channelId)),
+        onAddComment: (channelId, comment, author) => dispatch(actions.addComment(channelId, comment, author)),
+        onUpdateHeaderChannelWidth: (width) => dispatch(actions.updateHeaderChannelWidth(width)),
+        onUpdatedComments: (update) => dispatch(actions.updateComments(update))
     };
 };
 

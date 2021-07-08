@@ -13,5 +13,6 @@ export {
 
 export {
     fetchComments,
-    addComment
+    addComment,
+    updateComments
 } from './comment';

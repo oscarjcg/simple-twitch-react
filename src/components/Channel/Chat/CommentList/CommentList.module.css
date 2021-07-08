@@ -2,4 +2,5 @@
     overflow: auto;
     border: 1px solid gray;
     flex: 1 1 auto;
+    height: 400px;
 }

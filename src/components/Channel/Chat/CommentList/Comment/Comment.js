@@ -4,8 +4,7 @@ import classes from './CommentItem.module.css';
 
 const commentItem = (props) => (
     <div className={classes.CommentContainer}>
-        <p>{props.time}</p>
-        <p >{props.username}:</p>
+        <p >{props.author}:</p>
         <p className={classes.Comment}>{props.comment}</p>
     </div>
 );

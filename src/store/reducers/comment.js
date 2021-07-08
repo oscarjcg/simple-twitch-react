@@ -3,7 +3,8 @@ import { updateObject } from '../../shared/utility';
 
 const initialState = {
     comments: null,
-    error: null
+    error: null,
+    updateComments: null
 };
 
 const fetchCommentsSuccess = (state, action) => {
@@ -20,17 +21,15 @@ const fetchCommentsFail = (state, action) => {
 };
 
 const addCommentSuccess = (state, action) => {
-
-    let d = new Date();
-    let comment = {"username" : "You", "time" : d.toLocaleTimeString(), "comment" : action.comment};
-
     return updateObject(state, {
-        comments: [
-            ...state.comments,
-            comment,
-          ],
         error: null
     });  
+};
+
+const updateCommentsSucess = (state, action) => {
+    return updateObject(state, {
+        updateComments: action.updateComments
+    }); 
 };
 
 const reducer = (state = initialState, action) => {
@@ -40,7 +39,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_COMMENTS_FAIL:           
             return fetchCommentsFail(state, action);
         case actionTypes.ADD_COMMENT_SUCCESS:           
-            return addCommentSuccess(state, action);   
+            return addCommentSuccess(state, action); 
+        case actionTypes.UPDATE_COMMENTS_SUCCESS:           
+            return updateCommentsSucess(state, action);    
         default:    
             return state;
     }
