@@ -33,3 +33,30 @@ export const fetchChannels = () => {
             });
     };
 };
+
+export const fetchChannelByNameSuccess = (channel) => {
+    return {
+        type: actionTypes.FETCH_CHANNEL_SUCCESS,
+        channel: channel
+    }
+};
+
+export const fetchChannelByNameFail = (error) => {
+    return {
+        type: actionTypes.FETCH_CHANNEL_FAIL,
+        error: error
+    }
+};
+
+export const fetchByNameChannel = (channelName) => {
+    return dispatch => {
+        axios.get('/channels/name/' + channelName)
+            .then(res => {
+                let channel = res.data;
+                dispatch(fetchChannelByNameSuccess(channel));
+            })
+            .catch(err => {
+                dispatch(fetchChannelByNameFail(err));        
+            });
+    };
+};

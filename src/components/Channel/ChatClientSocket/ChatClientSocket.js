@@ -16,7 +16,7 @@ export default function ChatClientSocket(props) {
         });
 
         socket.on("newMessage", data => {
-            props.onUpdatedComments(null);
+            props.updateComments();
         });
 
         return () => socket.disconnect();

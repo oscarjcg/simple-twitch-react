@@ -34,6 +34,37 @@ export const fetchComments = (channelId) => {
     };    
 };
 
+// Fetch comments by channel name
+export const fetchCommentsByNameSuccess = (comments) => {
+    return {
+        type: actionsTypes.FETCH_COMMENTS_SUCCESS,
+        comments: comments
+    }
+};
+
+export const fetchCommentsByNameFail = (error) => {
+    return {
+        type: actionsTypes.FETCH_COMMENTS_FAIL,
+        error: error
+    }
+};
+
+export const fetchCommentsByName = (channelName) => {
+    return dispatch => {
+        axios.get('/comments/name/' + channelName)
+            .then(res => {                
+                let comments = res.data.map(comment => {
+                    return comment;               
+                });            
+
+                dispatch(fetchCommentsByNameSuccess(comments));
+            })
+            .catch(err => {
+                dispatch(fetchCommentsByNameFail(err));
+            });         
+    };    
+};
+
 // Add comment
 export const addCommentSuccess = () => {
     return {
@@ -55,9 +86,7 @@ export const addComment = (channelId, comment, author) => {
             author: author,
             comment:comment
         })
-        .then(res => {                
-            console.log(res.data);       
-
+        .then(res => {              
             dispatch(addCommentSuccess());
         })
         .catch(err => {

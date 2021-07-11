@@ -3,7 +3,8 @@ export {
 } from './category';
 
 export {
-    fetchChannels
+    fetchChannels,
+    fetchByNameChannel
 } from './channel';
 
 export {
@@ -13,6 +14,7 @@ export {
 
 export {
     fetchComments,
+    fetchCommentsByName,
     addComment,
     updateComments
 } from './comment';

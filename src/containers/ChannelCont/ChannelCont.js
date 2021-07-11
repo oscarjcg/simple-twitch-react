@@ -14,8 +14,9 @@ const RATIO_4_3 = [4, 3];
 class ChannelCont extends Component {
 
     componentDidMount() {   
-        this.props.onLoadChannels();
+        this.props.onLoadChannel(this.props.match.params.channel);
         this.props.onUpdatedComments(null);
+        this.props.onLoadComments(this.props.match.params.channel);
     }
 
     calculateVideoHeight = (width, ratio) => {
@@ -33,38 +34,31 @@ class ChannelCont extends Component {
     addCommentHandler = (e) => {     
 
         if (e.keyCode == 13) {// Enter
-            // Add comment
-            let channel = null;
-            if (this.props.channels) {
-                channel = 
-                    this.props.channels.find(ch => {
-                        return ch.name === this.props.match.params.channel;
-                    });
-            };    
-            this.props.onAddComment(channel.id, e.target.value, "ReactApp");
+            // Add comment 
+            this.props.onAddComment(this.props.channel.id, e.target.value, "ReactApp");
+            e.target.value = "";
         }
     }
+
+    updateCommentsHandler = () => {
+        this.props.onLoadComments(this.props.match.params.channel);
+    }
+
+     componentDidUpdate(prevProps) {
+         if (prevProps.channel != null && (this.props.match.params.channel != this.props.channel.name)) {
+            this.props.onLoadChannel(this.props.match.params.channel);
+            this.props.onLoadComments(this.props.match.params.channel);
+         }
+      }
+    
 
     render() {
         let height = window.innerHeight - this.props.headerHeight;
 
         let channel = null;
-        if (this.props.channels) {
-            channel = 
-                this.props.channels.find(ch => {
-                    return ch.name === this.props.match.params.channel;
-                });
-
-            if (this.props.updateComments == null) {
-                this.props.onUpdatedComments(true);
-                this.props.onLoadComments(channel.id);
-            }
+        if (this.props.channel) {
+            channel = this.props.channel;
         };        
-
-        let comments = null;
-        if (this.props.comments) {
-            comments = this.props.comments;
-        }
 
         let currentState = this.props.channelError ? <Error></Error> : <Spinner></Spinner>;
 
@@ -72,18 +66,18 @@ class ChannelCont extends Component {
             <div className={classes.Content} style={{height: height}}>
                 {channel ?
                     <Channel 
-                        channel={channel}
+                        channel={this.props.channel}
                         videoWidth={this.props.headerChannelWidth 
                             ? this.props.headerChannelWidth : '600'}
                         videoHeight={this.props.headerChannelWidth 
                             ? this.calculateVideoHeight(this.props.headerChannelWidth, RATIO_16_9) : '337'}
                         selectChannel={this.selectChannelHandler}
                         headerChannelWidth={this.headerChannelWidthHandler}
-                        comments={comments}
+                        comments={this.props.comments}
                         addComment={this.addCommentHandler}></Channel> 
                     : currentState}          
 
-                    {channel ? <ChatClientSocket onUpdatedComments={this.props.onUpdatedComments}></ChatClientSocket> : null}      
+                {channel ? <ChatClientSocket updateComments={this.updateCommentsHandler}></ChatClientSocket> : null}      
 
             </div>
         );
@@ -93,21 +87,22 @@ class ChannelCont extends Component {
 const mapStateToProps = state => {
     return {
         headerHeight: state.userInterface.headerHeight,
-        channels: state.channel.channels,
+        channels: state.channel.channels, 
+        channel: state.channel.channel,
         channelError: state.channel.error,
         headerChannelWidth: state.userInterface.headerChannelWidth,
         comments: state.comment.comments,
-        updateComments: state.comment.updateComments
+        updateComments: state.comment.updateComments // Remove this
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {   
-        onLoadChannels: () => dispatch(actions.fetchChannels()),
-        onLoadComments: (channelId) => dispatch(actions.fetchComments(channelId)),
+        onLoadChannel: (channelName) => dispatch(actions.fetchByNameChannel(channelName)),
+        onLoadComments: (channelName) => dispatch(actions.fetchCommentsByName(channelName)),
         onAddComment: (channelId, comment, author) => dispatch(actions.addComment(channelId, comment, author)),
         onUpdateHeaderChannelWidth: (width) => dispatch(actions.updateHeaderChannelWidth(width)),
-        onUpdatedComments: (update) => dispatch(actions.updateComments(update))
+        onUpdatedComments: (update) => dispatch(actions.updateComments(update)) // Remove this
     };
 };
 

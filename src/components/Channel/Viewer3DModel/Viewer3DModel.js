@@ -3,8 +3,8 @@ import React from 'react';
 import classes from './Viewer3DModel.module.css';
 import Iframe from 'react-iframe'
 
-//const URL_MODELS_3D = "https://models3d.oscarcatarigutierrez.com";
-const URL_MODELS_3D = "https://oscarcatarigutierrez.com";
+const URL_MODELS_3D = "https://models3d.oscarcatarigutierrez.com";
+//const URL_MODELS_3D = "https://oscarcatarigutierrez.com";
 
 
 const viewer3DModel = (props) => {
