@@ -5,6 +5,7 @@
 
 .ChannelName {
     margin: 0;
+    padding-left: 10px;
     height: 20px;
     color: white;
 }

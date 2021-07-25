@@ -29,3 +29,7 @@
 .Icon:hover path:nth-child(1) {
     fill: grey;
 }
+
+.IconContainer {
+    display: inline-block;
+}

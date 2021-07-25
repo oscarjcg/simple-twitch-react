@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Layout from './hoc/Layout/Layout';
@@ -11,13 +11,6 @@ import * as actions from './store/actions/index';
 
 class App extends Component {
 
-  state = {
-    navItems: [
-      {link: '/', text: 'Discover', exact: true},
-      {link: '/directory', text: 'Browse', exact: false}
-    ]
-  }
-
   headerHeightHandler = (height) => { 
     this.props.onUpdateHeaderHeight(height);
   }
@@ -26,8 +19,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <Layout 
-          headerHeight={this.headerHeightHandler}
-          navItems={this.state.navItems}>       
+          headerHeight={this.headerHeightHandler}>       
           <Switch>     
             <Route path="/" exact component={Discover}></Route>
             <Route path="/directory/game/:category" component={GameCont}></Route>  

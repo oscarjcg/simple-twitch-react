@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
 import classes from './Layout.module.css';
-import NavBar from '../../components/Navigation/NavBar/NavBar';
+//import NavBar from '../../components/Navigation/NavBar/NavBar';
+import NavBar from '../../containers/NavBarCont/NavBarCont';
+
 import SimpleChannelListCont from '../../containers/SimpleChannelListCont/SimpleChannelListCont'
 
 class Layout extends Component {

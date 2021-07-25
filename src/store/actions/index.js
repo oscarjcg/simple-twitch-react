@@ -9,7 +9,9 @@ export {
 
 export {
     updateHeaderHeight,
-    updateHeaderChannelWidth
+    updateHeaderChannelWidth,
+    updateSearchText,
+    updateSearchTextTemp
 } from './userInterface';
 
 export {

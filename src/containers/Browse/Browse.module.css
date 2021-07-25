@@ -1,7 +1,7 @@
 .Content {    
     background-color: black;  
     overflow: auto;
-    padding: 0 0 0 25px;
+    padding: 0 25px 0 25px;
 }
 
 .Title {
@@ -9,4 +9,9 @@
     margin: 0;
     padding-top: 20px;
     font-size: 50px;
+}
+
+
+.List {
+    padding: 10px 0 10px 0;
 }

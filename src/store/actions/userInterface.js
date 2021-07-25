@@ -21,3 +21,25 @@ export const updateHeaderChannelWidth = (width) => {
         );
     };    
 };
+
+export const updateSearchText = (searchText) => {
+    return dispatch => {
+        dispatch(
+            {
+                type: actionTypes.UPDATE_SEARCH_TEXT,
+                searchText: searchText
+            }
+        );
+    };    
+};
+
+export const updateSearchTextTemp = (searchText) => {
+    return dispatch => {
+        dispatch(
+            {
+                type: actionTypes.UPDATE_SEARCH_TEXT_TEMP,
+                searchText: searchText
+            }
+        );
+    };    
+};
