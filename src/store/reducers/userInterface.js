@@ -5,8 +5,10 @@ const initialState = {
     headerHeight: null,
     headerChannelWidth: null,
     searchText: null,
-    searchTextTemp: null
-
+    searchTextTemp: null,
+    navBarSearchText: null,
+    searchResults: null,
+    visibilityNavBarSearchResults : false
 };
 
 const updateHeaderHeight = (state, action) => {
@@ -33,6 +35,31 @@ const updateSearchTextTemp = (state, action) => {
     }); 
 };
 
+const updateNavBarSearchText = (state, action) => {
+    return updateObject(state, {
+        navBarSearchText: action.searchText
+    }); 
+};
+
+const fetchSearchResultsSuccess = (state, action) => {
+    return updateObject(state, {
+        searchResults: action.searchResults, 
+        error: null
+    });
+};
+
+const fetchSearchResultsFail = (state, action) => {
+    return updateObject(state, {
+        error: action.error
+    });
+};
+
+const visibilityNavBarSearchResults = (state, action) => {
+    return updateObject(state, {
+        visibilityNavBarSearchResults: action.visibilityNavBarSearchResults
+    }); 
+};
+
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.UPDATE_HEADER_HEIGHT:           
@@ -43,7 +70,15 @@ const reducer = (state = initialState, action) => {
             return updateSearchText(state, action);   
         case actionTypes.UPDATE_SEARCH_TEXT_TEMP:           
             return updateSearchTextTemp(state, action); 
-        default:    
+        case actionTypes.UPDATE_NAVBAR_SEARCH_TEXT:
+            return updateNavBarSearchText(state, action);
+        case actionTypes.FETCH_NAVBAR_SEARCH_RESULTS_SUCCESS:  
+            return fetchSearchResultsSuccess(state, action);
+        case actionTypes.FETCH_NAVBAR_SEARCH_RESULTS_FAIL:  
+            return fetchSearchResultsFail(state, action);
+        case actionTypes.VISIBILITY_NAVBAR_SEARCH_RESULTS:  
+            return visibilityNavBarSearchResults(state, action);
+        default:
             return state;
     };
 };

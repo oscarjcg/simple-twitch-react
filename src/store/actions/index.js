@@ -11,7 +11,10 @@ export {
     updateHeaderHeight,
     updateHeaderChannelWidth,
     updateSearchText,
-    updateSearchTextTemp
+    updateSearchTextTemp,
+    updateNavBarSearchText,
+    fetchSearchResults,
+    visibilityNavBarSearchResults
 } from './userInterface';
 
 export {

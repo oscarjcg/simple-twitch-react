@@ -10,7 +10,12 @@ const navBar = (props) => (
             <ul className={classes.List}>
                 <p className={classes.Brand}>Simple Twitch</p>
                 <NavItems items={props.items}></NavItems>
-                <SearchBar search={props.search}></SearchBar>    
+                <SearchBar 
+                    search={props.search} 
+                    searchButton={props.searchButton}
+                    searchResult={props.searchResult} 
+                    selectSearch={props.selectSearch}
+                    visibilitySearchResults={props.visibilitySearchResults}></SearchBar>    
             </ul>                 
         </nav>
     </header>

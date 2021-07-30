@@ -33,3 +33,33 @@
 .IconContainer {
     display: inline-block;
 }
+.SearchItemContainer {
+    position: absolute;
+    z-index: 1;
+    width: 190px;
+    border-radius: 5px;
+    background-color: gray;
+    margin-top: 5px;
+}
+
+.SearchItem {
+    
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.Container {
+    display: flex;
+    align-items: center;
+}
+
+.ImageChannel {
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.ImageCategory {
+    margin: 10px;
+}

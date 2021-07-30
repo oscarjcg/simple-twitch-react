@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import axios from '../../axios/axios-category';
 
 export const updateHeaderHeight = (headerHeight) => {
     return dispatch => {
@@ -41,5 +42,64 @@ export const updateSearchTextTemp = (searchText) => {
                 searchText: searchText
             }
         );
+    };    
+};
+
+export const updateNavBarSearchText = (searchText) => {
+    return dispatch => {
+        dispatch(
+            {
+                type: actionTypes.UPDATE_NAVBAR_SEARCH_TEXT,
+                searchText: searchText
+            }
+        );
+    };    
+};
+
+export const visibilityNavBarSearchResults = (visibility) => {
+    return dispatch => {
+        dispatch(
+            {
+                type: actionTypes.VISIBILITY_NAVBAR_SEARCH_RESULTS,
+                visibilityNavBarSearchResults: visibility
+            }
+        );
+    };    
+};
+
+// Fetch search results
+export const fetchSearchResultsSuccess = (searchResults) => {
+    return {
+        type: actionTypes.FETCH_NAVBAR_SEARCH_RESULTS_SUCCESS,
+        searchResults: searchResults
+    }
+};
+
+export const fetchSearchResultsFail = (error) => {
+    return {
+        type: actionTypes.FETCH_NAVBAR_SEARCH_RESULTS_FAIL,
+        error: error
+    }
+};
+
+export const fetchSearchResults = (searchText) => {
+    return dispatch => {
+        if (searchText == null || searchText === "") {
+            dispatch(fetchSearchResultsSuccess(null));
+        } else {
+            
+            axios.get('/search/' + searchText)
+                .then(res => {                
+                    let results = res.data.map(result => {
+                        return result;               
+                    });            
+
+                    dispatch(fetchSearchResultsSuccess(results));
+                })
+                .catch(err => {
+                    dispatch(fetchSearchResultsFail(err));
+                });         
+        }
+
     };    
 };
