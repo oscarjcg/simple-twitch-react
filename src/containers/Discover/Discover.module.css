@@ -1,6 +1,7 @@
 .Content {    
     background-color: black;  
     overflow: auto;
+    padding: 25px 25px 25px 25px;
 }
 
 .Title {

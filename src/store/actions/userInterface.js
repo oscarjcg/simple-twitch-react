@@ -56,6 +56,19 @@ export const updateNavBarSearchText = (searchText) => {
     };    
 };
 
+export const updateRecommendedListMore = (name, value) => {
+    return dispatch => {
+        dispatch(
+            {
+                type: actionTypes.UPDATE_RECOMMENDED_LIST_MORE,
+                name: name,
+                value: value
+            }
+        );
+    };    
+};
+
+
 export const visibilityNavBarSearchResults = (visibility) => {
     return dispatch => {
         dispatch(

@@ -1,5 +1,7 @@
 export {
-    fetchCategories
+    fetchCategories,
+    fetchCategoryChannels,
+    fetchCategoryByName
 } from './category';
 
 export {
@@ -14,7 +16,8 @@ export {
     updateSearchTextTemp,
     updateNavBarSearchText,
     fetchSearchResults,
-    visibilityNavBarSearchResults
+    visibilityNavBarSearchResults,
+    updateRecommendedListMore
 } from './userInterface';
 
 export {

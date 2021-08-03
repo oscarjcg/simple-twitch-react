@@ -11,8 +11,7 @@ import Error from '../UI/Error/Error';
 const game = (props) => {
     let tabs = [
         {link: "/directory/game/" + props.match.params.category, text: "Live Channels"},
-        {link: "/directory/videos/all", text: "Videos"},
-        {link: "/directory/clips", text: "Clips"} 
+        //{link: "/directory/game/" + props.match.params.category + "/videos/all", text: "Videos"}
     ];
   
     let header = null;
@@ -37,7 +36,7 @@ const game = (props) => {
     <div className={classes.Content} style={{height: props.height}}>        
         {header}
         <NavTab tabs={tabs}></NavTab>
-        <Filter></Filter>   
+        <Filter search={props.search} searchButton={props.searchButton}></Filter>   
         <ChannelList 
             channels={props.channels}
             selectChannel={props.selectChannel}

@@ -1,0 +1,38 @@
+.Title {
+    color: white;
+    margin-top: 0;
+}
+
+.LinkCategory {
+    color: #c466d4;
+    
+}
+
+.LinkCategory:hover {
+    color: #c78bd1;
+}
+
+.MoreContainer {
+    display: flex;  
+}
+
+.LeftLine {
+    flex-grow: 1;  
+    align-self: center;
+}
+
+.RightLine {
+    flex-grow: 1; 
+    align-self: center;
+}
+
+.More {   
+    color: #c466d4;
+    cursor: pointer;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.More:hover {
+    background-color: rgba(255, 255, 255, 0.151);
+}

@@ -8,8 +8,8 @@ import NavTab from '../../Navigation/NavTab/NavTab';
 const header = (props) => {
     let navItems = [
         {link: "/" + props.match.params.channel, text: "Home", exact: true},
-        {link: "/#" + props.match.params.channel, text: "Videos", exact: true},
-        {link: "/##" + props.match.params.channel, text: "Clips", exact: true}
+        //{link: "/#" + props.match.params.channel, text: "Videos", exact: true},
+        //{link: "/##" + props.match.params.channel, text: "Clips", exact: true}
     ]; 
     return (
         <div className={classes.Content}>

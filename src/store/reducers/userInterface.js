@@ -8,7 +8,8 @@ const initialState = {
     searchTextTemp: null,
     navBarSearchText: null,
     searchResults: null,
-    visibilityNavBarSearchResults : false
+    visibilityNavBarSearchResults : false,
+    recommendedListMore: {}
 };
 
 const updateHeaderHeight = (state, action) => {
@@ -60,6 +61,17 @@ const visibilityNavBarSearchResults = (state, action) => {
     }); 
 };
 
+const updateRecommendedListMore = (state, action) => {
+
+    var obj = { ...state.recommendedListMore} ;
+    obj[action.name] = action.value
+
+    return updateObject(state, {
+        recommendedListMore: obj
+    }); 
+};
+
+
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.UPDATE_HEADER_HEIGHT:           
@@ -78,6 +90,8 @@ const reducer = (state = initialState, action) => {
             return fetchSearchResultsFail(state, action);
         case actionTypes.VISIBILITY_NAVBAR_SEARCH_RESULTS:  
             return visibilityNavBarSearchResults(state, action);
+        case actionTypes.UPDATE_RECOMMENDED_LIST_MORE:  
+            return updateRecommendedListMore(state, action);
         default:
             return state;
     };
