@@ -6,6 +6,9 @@ import YouTube from 'react-youtube';
 import Chat from './Chat/Chat';
 import Viewer3DModel from './Viewer3DModel/Viewer3DModel';
 
+const TYPE_YOUTUBE = 1;
+const TYPE_3D_MODEL = 2;
+
 class Channel extends Component {
 
     constructor(props) {
@@ -54,26 +57,40 @@ class Channel extends Component {
             }
         };
 
+        // Content type
+        let contentComponent = null;
+        if (this.props.channel) {
+            switch (this.props.channel.type) {
+                case TYPE_YOUTUBE:
+                    contentComponent =
+                        <YouTube
+                            //videoId={this.state.video}
+                            videoId={this.props.channel.content}
+                            opts={opts}
+                            onReady={this.onReady}
+                            onStateChange={this.onStateChange}
+                        />;
+                    break;
+                case TYPE_3D_MODEL:
+                    contentComponent =
+                        <Viewer3DModel
+                            model={this.props.channel.content}
+                            height={this.props.videoHeight}
+                            width={this.props.videoWidth}/>;
+                    break;
+            }
+        }
+
+        // Render
         return (
             <div className={classes.Main}>
                 <div className={classes.Content} ref={this.state.header}>
                     <Header
                         channel={this.props.channel}
                         selectChannel={this.props.selectChannel}></Header>
-                    {/*
-                    <YouTube
-                        videoId={this.state.video}
-                        opts={opts}
-                        onReady={this.onReady}
-                        onStateChange={this.onStateChange}
-                    />
-                    */}
+                    { contentComponent }
 
-                    <Viewer3DModel 
-                        height={this.props.videoHeight} 
-                        width={this.props.videoWidth}></Viewer3DModel>
-
-                    {this.state.player ? <p className={classes.Info}>{this.state.intervalCurrentMS}</p> : null}
+                    {/*this.state.player ? <p className={classes.Info}>{this.state.intervalCurrentMS}</p> : null */}
                 </div>
                 
                 <Chat 

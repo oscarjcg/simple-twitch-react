@@ -77,7 +77,7 @@ class ChannelCont extends Component {
                         addComment={this.addCommentHandler}></Channel> 
                     : currentState}          
 
-                {channel ? <ChatClientSocket updateComments={this.updateCommentsHandler}></ChatClientSocket> : null}      
+                {/*channel ? <ChatClientSocket updateComments={this.updateCommentsHandler}></ChatClientSocket> : null*/}
 
             </div>
         );
