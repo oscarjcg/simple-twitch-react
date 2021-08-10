@@ -1,12 +1,24 @@
 # SimpleTwitch (En desarrollo)
 
+<p align="center">
+<img style="padding: 2px;" src="images/react1.png" alt="Image 1"
+	title="Preview" width="500"/>
+</p>
+<p align="center">
+<img style="padding: 2px;" src="images/react2.png" alt="Image 2  "
+	title="Preview" width="500"/>
+</p>
 
-**Descripción:** Versión simplificada de [Twitch](https://www.twitch.tv/directory) (Plataforma de live streaming centrada en juegos)
+**Descripción:** Plataforma basaba en canales para mostrar videos y modelos 3D.
 
 **Características**:
+* Discover: Lista de recomendaciones (Categorias y canales)
 * Browse: Lista de categorias y canales
+* Canal: 
+    * Contenido: Video de Youtube o modelo 3D
+    * Chat: Comentarios
 * Backend: 
-    * Github: https://github.com/oscarjcg/backend-simple-twitch
+    * Github: https://github.com/oscarjcg/simple-twitch-backend-laravel
 
 **Entorno de desarrollo**:
 * **Sistema operativo:** Windows 10 64 bits
