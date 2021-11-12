@@ -4,16 +4,16 @@ import classes from './InputComment.module.css';
 
 const inputComment = (props) => (
     <div className={classes.InputCommentContainer}>
-     
-        <p>Time: </p>
-        <div>
-            <input 
-                className={classes.ActivePurple}
-                type="text" 
+
+        <br></br>
+        <div className={classes.ActivePurple}>
+            <input
+
+                type="text"
                 onKeyDown={props.addComment}
                 placeholder="Send a message">
                 </input>
-        </div>        
+        </div>
     </div>
 );
 

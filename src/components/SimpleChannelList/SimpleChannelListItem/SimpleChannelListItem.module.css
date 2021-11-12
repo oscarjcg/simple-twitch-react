@@ -3,6 +3,11 @@
     align-items: center;
 }
 
+.Container:hover {
+    background: rgba(160, 160, 160, 0.178);
+    cursor: pointer;
+}
+
 .Title {
     color: white;
 }

@@ -1,31 +1,34 @@
 .InputCommentContainer {
-    text-align: center; 
+    text-align: center;
     flex: 0 1 auto;
-    background-color: black;    
-    
+    background-color: black;
+
 }
 
 .InputCommentContainer input {
-    display:inline-block;        
+    display:inline-block;
     height: 40px;
     border-radius: 5px;
     width: 80%;
-}   
+}
 
 .InputCommentContainer p {
     color: white;
 }
 
-.ActivePurple {           
+.ActivePurple input {
+    outline: none;
     background-color: rgb(85, 85, 85);
     color: white;
-    border: 2px solid transparent; 
-    border-bottom-left-radius: 5px;
+    border-color: transparent;
     border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 30px;
+
 }
 
-.ActivePurple:focus {    
+.ActivePurple input:focus {
     border: 2px solid #c466d4;
     box-shadow: 0 0 0 1px #c466d4;
-    background-color: black;      
+    background-color: black;
 }

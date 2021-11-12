@@ -35,17 +35,16 @@ class SearchBar extends Component {
 
     buildResult() {
         // Search result in dropdown. Channels and categories
-
         let results = null;
         if (this.props.searchResult) {
             results = this.props.searchResult.map(result => {
                 if (result.type === "channel")
                     return (
                         <div className={classes.Container} key={result.name}>
-                            <img 
-                                src={result.image} 
-                                alt={result.name} 
-                                height="30" 
+                            <img
+                                src={result.image}
+                                alt={result.name}
+                                height="30"
                                 className={classes.ImageChannel}
                                 onClick={() => this.props.selectSearch(result.type, result.name)}></img>
                             <a onClick={() => this.props.selectSearch(result.type, result.name)} className={classes.SearchItem}>{result.name}</a>
@@ -54,10 +53,10 @@ class SearchBar extends Component {
                 else {
                     return (
                         <div className={classes.Container} key={result.name}>
-                            <img 
-                                src={result.image} 
-                                alt={result.name} 
-                                height="30" 
+                            <img
+                                src={result.image}
+                                alt={result.name}
+                                height="30"
                                 width="30"
                                 className={classes.ImageCategory}
                                 onClick={() => this.props.selectSearch(result.type, result.name)}></img>
@@ -72,32 +71,32 @@ class SearchBar extends Component {
 
     render () {
         let results = this.buildResult();
-        if (!this.props.visibilityNavBarSearchResults) 
+        if (!this.props.visibilityNavBarSearchResults)
             results = null;
 
         return (
             <div ref={this.wrapperRef}>
                 <div className={[classes.SearchBar, classes.ActivePurple].join(' ')}>
-                    <input 
-                        type="text" 
-                        placeholder="Search" 
+                    <input
+                        type="text"
+                        placeholder="Search"
                         onChange={this.props.search}
-                        onKeyDown={this.props.search}></input>  
+                        onKeyDown={this.props.search}></input>
 
                         <div className={classes.SearchItemContainer}>
                             { results }
                         </div>
-                        
+
                 </div>
 
-                <div 
-                    className={classes.IconContainer} 
+                <div
+                    className={classes.IconContainer}
                     onClick={this.props.searchButton}>
-                    <SearchIcon 
-                        width={36} 
-                        fill="rgb(85, 85, 85)" 
+                    <SearchIcon
+                        width={36}
+                        fill="rgb(85, 85, 85)"
                         color="white"
-                        className={classes.Icon}></SearchIcon> 
+                        className={classes.Icon}></SearchIcon>
                 </div>
             </div>
         );

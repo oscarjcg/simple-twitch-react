@@ -2,15 +2,15 @@
     float: left;
 }
 
-.ActivePurple input {    
+.ActivePurple input {
     outline: none;
     background-color: rgb(85, 85, 85);
     color: white;
-    border-color: transparent;       
+    border-color: transparent;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    height: 30px; 
-    
+    height: 30px;
+
 }
 
 .ActivePurple input:focus {
@@ -43,7 +43,6 @@
 }
 
 .SearchItem {
-    
     color: white;
     padding: 12px 16px;
     text-decoration: none;
@@ -53,6 +52,11 @@
 .Container {
     display: flex;
     align-items: center;
+}
+
+.Container:hover {
+    background: #c466d4;
+    cursor: pointer;
 }
 
 .ImageChannel {

@@ -16,12 +16,11 @@ class NavBarCont extends Component {
         ]
     }
 
-    searchHandler = (e) => {     
-        if (e.keyCode == 13) {// Enter
-            // Search
-            this.props.onChangeVisibilitySearchResults(true);
-            this.props.onLoadSearchResults(e.target.value);
-        }
+    searchHandler = (e) => {
+        // Search
+        this.props.onChangeVisibilitySearchResults(true);
+        this.props.onLoadSearchResults(e.target.value);
+
         this.props.onSearchText(e.target.value);
 
     }
@@ -48,7 +47,7 @@ class NavBarCont extends Component {
     render () {
 
         return (
-            <NavBar 
+            <NavBar
                 items={this.state.navItems}
                 search={this.searchHandler}
                 searchButton={this.searchButtonHandler}
