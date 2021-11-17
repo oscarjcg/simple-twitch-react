@@ -8,6 +8,7 @@ import NavTab from '../../components/Navigation/NavTab/NavTab';
 import CategoryList from '../../components/CategoryList/CategoryList';
 import ChannelList from '../../components/ChannelList/ChannelList';
 import Filter from '../../components/UI/Filter/Filter';
+import debounce from 'lodash.debounce';
 
 class Browse extends Component {
 
@@ -36,9 +37,10 @@ class Browse extends Component {
             this.props.onSearchTextTemp(e.target.value);
         }
 
-        // Search
-        this.props.onSearchText(e.target.value);
+        this.debouncedSearch();
     }
+
+    debouncedSearch = debounce(() => this.props.onSearchText(this.props.searchTextTemp), 300);
 
     searchButtonHandler = () => {
         this.props.onSearchText(this.props.searchTextTemp);

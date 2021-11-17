@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import classes from './NavBarCont.module.css';
 import NavBar from '../../components/Navigation/NavBar/NavBar';
 import * as actions from '../../store/actions/index';
+import debounce from 'lodash.debounce';
 
 
 class NavBarCont extends Component {
@@ -19,11 +20,11 @@ class NavBarCont extends Component {
     searchHandler = (e) => {
         // Search
         this.props.onChangeVisibilitySearchResults(true);
-        this.props.onLoadSearchResults(e.target.value);
-
         this.props.onSearchText(e.target.value);
-
+        this.debouncedSearch()
     }
+
+    debouncedSearch = debounce(() => this.props.onLoadSearchResults(this.props.navBarSearchText), 300);
 
     selectSearchHandler = (type, name) => {
         if (type === "channel") {
