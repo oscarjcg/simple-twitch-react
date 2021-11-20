@@ -12,8 +12,14 @@
     color: white;
 }
 
+@media screen and (max-width: 600px) {
+    .Title {
+        display: none;
+    }
+}
+
 .Image {
-    border-radius: 50%; 
+    border-radius: 50%;
     color: white;
     margin: 10px;
 }

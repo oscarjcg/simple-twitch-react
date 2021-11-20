@@ -1,9 +1,10 @@
 .Content {
-    background-color: black;    
+    background-color: black;
     display: flex;
     flex-flow: column;
-    
-    width: 30%;    
+    margin-bottom: 10px;
+    width: 30%;
+    flex: 1 1 auto;
 }
 
 .Title {
@@ -17,6 +18,17 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(34, 34, 34);
-    border: 1px solid black; 
+    border: 1px solid black;
     flex: 0 1 auto;
+}
+
+
+@media screen and (max-width: 600px) {
+    .Title {
+        display: none;
+    }
+    .Content {
+        width: 100%;
+    }
+
 }

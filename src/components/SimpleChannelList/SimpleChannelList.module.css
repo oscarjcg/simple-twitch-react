@@ -1,5 +1,5 @@
 .Container {
-    background-color: #333;  
+    background-color: #333;
     height: 100%;
 }
 
@@ -7,4 +7,10 @@
     color: white;
     margin: 0;
     padding: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .Title {
+        display: none;
+    }
 }

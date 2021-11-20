@@ -1,7 +1,13 @@
-.Content {    
-    background-color: black;  
+.Content {
+    background-color: black;
     overflow: auto;
     padding: 0 25px 0 25px;
+}
+
+@media screen and (max-width: 600px) {
+    .Content {
+        padding: 0;
+    }
 }
 
 .Title {

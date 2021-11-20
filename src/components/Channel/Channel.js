@@ -5,6 +5,7 @@ import Header from './Header/Header';
 import YouTube from 'react-youtube';
 import Chat from './Chat/Chat';
 import Viewer3DModel from './Viewer3DModel/Viewer3DModel';
+import ChatClientSocket from "./ChatClientSocket/ChatClientSocket";
 
 const TYPE_YOUTUBE = 1;
 const TYPE_3D_MODEL = 2;
@@ -21,19 +22,19 @@ class Channel extends Component {
             video: "LembwKDo1Dk",
             header: React.createRef()
         }
-    }   
+    }
 
-    onReady = (event) => {             
+    onReady = (event) => {
         this.setState({player: event.target});
 
         let myInterval = setInterval(() => {
             if(this.state.player)
                 this.setState({intervalCurrentMS: this.state.player.getCurrentTime()});
-            
+
           }, this.state.intervalInicialMS);
         this.setState({myInterval: myInterval});
     }
- 
+
     onStateChange = (event) => {
         // access to player in all event handlers via event.target
         // console.log(event);
@@ -91,15 +92,17 @@ class Channel extends Component {
                     { contentComponent }
 
                     {/*this.state.player ? <p className={classes.Info}>{this.state.intervalCurrentMS}</p> : null */}
+                    {this.props.channel ? <ChatClientSocket updateComments={this.props.updateCommentsHandler}></ChatClientSocket> : null}
+
                 </div>
-                
-                <Chat 
+
+                <Chat
                     comments={this.props.comments}
                     addComment={this.props.addComment}></Chat>
-                
+
             </div>
         );
-    }    
-};
+    }
+}
 
 export default Channel;

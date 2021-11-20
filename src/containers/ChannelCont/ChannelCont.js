@@ -6,14 +6,13 @@ import Channel from '../../components/Channel/Channel';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Error from '../../components/UI/Error/Error';
-import ChatClientSocket from "../../components/Channel/ChatClientSocket/ChatClientSocket";
 
 const RATIO_16_9 = [16, 9];
 const RATIO_4_3 = [4, 3];
 
 class ChannelCont extends Component {
 
-    componentDidMount() {   
+    componentDidMount() {
         this.props.onLoadChannel(this.props.match.params.channel);
         this.props.onUpdatedComments(null);
         this.props.onLoadComments(this.props.match.params.channel);
@@ -23,18 +22,18 @@ class ChannelCont extends Component {
         return width * ratio[1] / ratio[0];
     }
 
-    selectChannelHandler = (id) => {     
+    selectChannelHandler = (id) => {
         this.props.history.push('/' + id);
     }
 
-    headerChannelWidthHandler = (width) => { 
+    headerChannelWidthHandler = (width) => {
         this.props.onUpdateHeaderChannelWidth(width);
-    }    
-    
-    addCommentHandler = (e) => {     
+    }
+
+    addCommentHandler = (e) => {
 
         if (e.keyCode == 13) {// Enter
-            // Add comment 
+            // Add comment
             this.props.onAddComment(this.props.channel.id, e.target.value, "ReactApp");
             e.target.value = "";
         }
@@ -50,7 +49,7 @@ class ChannelCont extends Component {
             this.props.onLoadComments(this.props.match.params.channel);
          }
       }
-    
+
 
     render() {
         let height = window.innerHeight - this.props.headerHeight;
@@ -58,26 +57,26 @@ class ChannelCont extends Component {
         let channel = null;
         if (this.props.channel) {
             channel = this.props.channel;
-        };        
+        };
 
         let currentState = this.props.channelError ? <Error></Error> : <Spinner></Spinner>;
 
         return (
             <div className={classes.Content} style={{height: height}}>
                 {channel ?
-                    <Channel 
+                    <Channel
                         channel={this.props.channel}
-                        videoWidth={this.props.headerChannelWidth 
+                        videoWidth={this.props.headerChannelWidth
                             ? this.props.headerChannelWidth : '600'}
-                        videoHeight={this.props.headerChannelWidth 
+                        videoHeight={this.props.headerChannelWidth
                             ? this.calculateVideoHeight(this.props.headerChannelWidth, RATIO_16_9) : '337'}
                         selectChannel={this.selectChannelHandler}
                         headerChannelWidth={this.headerChannelWidthHandler}
                         comments={this.props.comments}
-                        addComment={this.addCommentHandler}></Channel> 
-                    : currentState}          
+                        addComment={this.addCommentHandler}
+                        updateComments={this.updateCommentsHandler}></Channel>
+                    : currentState}
 
-                {channel ? <ChatClientSocket updateComments={this.updateCommentsHandler}></ChatClientSocket> : null}
 
             </div>
         );
@@ -87,7 +86,7 @@ class ChannelCont extends Component {
 const mapStateToProps = state => {
     return {
         headerHeight: state.userInterface.headerHeight,
-        channels: state.channel.channels, 
+        channels: state.channel.channels,
         channel: state.channel.channel,
         channelError: state.channel.error,
         headerChannelWidth: state.userInterface.headerChannelWidth,
@@ -97,7 +96,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-    return {   
+    return {
         onLoadChannel: (channelName) => dispatch(actions.fetchByNameChannel(channelName)),
         onLoadComments: (channelName) => dispatch(actions.fetchCommentsByName(channelName)),
         onAddComment: (channelId, comment, author) => dispatch(actions.addComment(channelId, comment, author)),

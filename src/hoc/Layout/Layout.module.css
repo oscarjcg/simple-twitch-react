@@ -14,3 +14,13 @@
 .Content {
     width: 80%;
 }
+
+@media screen and (max-width: 600px) {
+    .ChannelsPanel {
+        width: 50px;
+    }
+
+    .Content {
+        flex-grow: 1;
+    }
+}

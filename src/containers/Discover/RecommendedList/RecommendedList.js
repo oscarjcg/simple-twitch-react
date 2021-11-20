@@ -23,11 +23,16 @@ class RecommendedList extends Component {
 
     calculateSizeList(rows = 1) {
         const width = this.containerList.current.clientWidth;
+        // Temporal fix for mobile
+        var mobile = 0;
+        if (width < WIDTH_CHANNEL_ITEM)
+            mobile = 100;
+
         let nItems = 0;
         if (this.props.categories != null) {
-          nItems = Math.floor(width / WIDTH_CATEGORY_ITEM);
+          nItems = Math.floor(width / (WIDTH_CATEGORY_ITEM));
         } else {
-          nItems = Math.floor(width / WIDTH_CHANNEL_ITEM);
+          nItems = Math.floor(width / (WIDTH_CHANNEL_ITEM-mobile));
         }
 
         return rows * nItems;
@@ -39,7 +44,7 @@ class RecommendedList extends Component {
         let filteredCategories = this.props.categories;
 
         let list = null;
-        
+
         if (this.props.categories != null && this.containerList.current != null) { // Categories
             // Init values
             if (!this.props.recommendedListMore.hasOwnProperty(this.props.name)) {
@@ -52,8 +57,8 @@ class RecommendedList extends Component {
             else
                 filteredCategories = filteredCategories.slice(0, this.calculateSizeList(2));
 
-            list = 
-            <CategoryList 
+            list =
+            <CategoryList
                 categories={filteredCategories}
                 selectCategory={this.props.selectCategory}
                 error={this.props.categoryError}></CategoryList>
@@ -68,41 +73,40 @@ class RecommendedList extends Component {
                 filteredChannels = filteredChannels.slice(0, this.calculateSizeList(1));
             else
                 filteredChannels = filteredChannels.slice(0, this.calculateSizeList(2));
-
-            list = 
+            list =
                 <ChannelList
                     channels={filteredChannels}
                     selectChannel={this.props.selectChannel}
                     error={this.props.channelError}></ChannelList>
         }
 
-        // Show more  
+        // Show more
         let more = null;
         if (this.props.recommendedListMore[this.props.name])
-            more = 
-                <div className={classes.MoreContainer}>      
-                    <hr className={classes.LeftLine}/>          
+            more =
+                <div className={classes.MoreContainer}>
+                    <hr className={classes.LeftLine}/>
                     <p
                         className={classes.More}
                         onClick={this.moreHandler}>
                         Show more
-                    </p>  
-                    <hr className={classes.RightLine}/>          
+                    </p>
+                    <hr className={classes.RightLine}/>
                 </div>;
 
 
         // Render
         return (
             <div className={classes.Content} >
-                <h4 className={classes.Title}>Recommended <a href="#" className={classes.LinkCategory}>{ this.props.name }</a></h4>       
+                <h4 className={classes.Title}>Recommended <a href="#" className={classes.LinkCategory}>{ this.props.name }</a></h4>
 
                 <div ref={this.containerList}>
                     { list }
-                </div>   
+                </div>
 
                 { more }
-                 
-            </div>          
+
+            </div>
         );
     }
 }

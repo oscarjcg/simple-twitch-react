@@ -75,7 +75,7 @@ class SearchBar extends Component {
             results = null;
 
         return (
-            <div ref={this.wrapperRef}>
+            <div ref={this.wrapperRef} className={classes.ContainerSearchBar}>
                 <div className={[classes.SearchBar, classes.ActivePurple].join(' ')}>
                     <input
                         type="text"

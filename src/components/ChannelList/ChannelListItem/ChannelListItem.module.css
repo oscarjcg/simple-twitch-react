@@ -1,7 +1,13 @@
 
 .MainContainer {
     width: 320px;
-    padding-right: 20px; 
+    padding-right: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .MainContainer {
+        padding: 0;
+    }
 }
 
 .Image {

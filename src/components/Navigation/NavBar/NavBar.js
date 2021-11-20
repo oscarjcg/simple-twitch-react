@@ -5,20 +5,21 @@ import classes from './NavBar.module.css';
 import SearchBar from '../../UI/SearchBar/SearchBar';
 
 const navBar = (props) => (
-    <header>      
-        <nav>      
+    <header>
+        <nav className={classes.Nav}>
             <ul className={classes.List}>
                 <p className={classes.Brand}>Simple Twitch</p>
                 <NavItems items={props.items}></NavItems>
-                <SearchBar 
-                    search={props.search} 
-                    searchButton={props.searchButton}
-                    searchResult={props.searchResult} 
-                    selectSearch={props.selectSearch}
-                    visibilitySearchResults={props.visibilitySearchResults}></SearchBar>    
-            </ul>                 
+
+            </ul>
+            <SearchBar
+                search={props.search}
+                searchButton={props.searchButton}
+                searchResult={props.searchResult}
+                selectSearch={props.selectSearch}
+                visibilitySearchResults={props.visibilitySearchResults}></SearchBar>
         </nav>
     </header>
 );
- 
+
 export default navBar;

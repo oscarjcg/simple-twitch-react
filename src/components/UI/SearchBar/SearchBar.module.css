@@ -67,3 +67,8 @@
 .ImageCategory {
     margin: 10px;
 }
+
+.ContainerSearchBar {
+    display: flex;
+    justify-content: center;
+}
