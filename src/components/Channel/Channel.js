@@ -92,7 +92,7 @@ class Channel extends Component {
                     { contentComponent }
 
                     {/*this.state.player ? <p className={classes.Info}>{this.state.intervalCurrentMS}</p> : null */}
-                    {this.props.channel ? <ChatClientSocket updateComments={this.props.updateCommentsHandler}></ChatClientSocket> : null}
+                    {this.props.channel ? <ChatClientSocket updateComments={this.props.updateComments}></ChatClientSocket> : null}
 
                 </div>
 
