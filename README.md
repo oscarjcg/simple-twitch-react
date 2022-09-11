@@ -1,4 +1,6 @@
-# SimpleTwitch (En desarrollo): https://st-react.oscarcatarigutierrez.com
+# SimpleTwitch (En desarrollo)
+
+: https://st-react.oscarcatarigutierrez.com
 
 <p align="center">
 <img style="padding: 2px;" src="images/react1.png" alt="Image 1"
