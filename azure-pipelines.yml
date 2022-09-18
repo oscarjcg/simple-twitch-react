@@ -30,5 +30,4 @@ stages:
         environment:
           name:  Virtual Maquine Linux
           resourceType: VirtualMachine
-          tags: 
-    
+          tags: web
