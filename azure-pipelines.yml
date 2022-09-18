@@ -44,14 +44,14 @@ stages:
           runOnce:
             deploy:
               steps:
-                - task: ExtractFiles@1
-                  inputs:
-                    archiveFilePatterns: '*.zip'
-                    destinationFolder: '/home/azureuser/docker-multi-domain/site3/data'
                 - task: CopyFiles@2
                   inputs:
                     SourceFolder: '$(Agent.BuildDirectory)/drop'
                     TargetFolder: '/home/azureuser/docker-multi-domain/site3/data'
+                - task: ExtractFiles@1
+                  inputs:
+                    archiveFilePatterns: '/home/azureuser/docker-multi-domain/site3/data/*.zip'
+                    destinationFolder: '/home/azureuser/docker-multi-domain/site3/data'
                 - task: Bash@3
                   inputs:
                     targetType: 'inline'
