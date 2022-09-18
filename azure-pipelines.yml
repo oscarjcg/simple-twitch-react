@@ -44,18 +44,10 @@ stages:
           runOnce:
             deploy:
               steps:
-                - task: DeleteFiles@1
-                  inputs:
-                    SourceFolder: '/home/azureuser/docker-multi-domain/site3/data'
-                    Contents: '**/*' 
-                - task: CopyFiles@2
-                  inputs:
-                    SourceFolder: '$(Agent.BuildDirectory)/drop/$(Build.BuildId).zip'
-                    TargetFolder: '/home/azureuser/docker-multi-domain/site3/data/'
                 - task: ExtractFiles@1
                   inputs:
-                    archiveFilePatterns: '/home/azureuser/docker-multi-domain/site3/data/*.zip'
-                    destinationFolder: '/home/azureuser/docker-multi-domain/site3/data/drop'
+                    archiveFilePatterns: '$(Agent.BuildDirectory)/drop/$(Build.BuildId).zip'
+                    destinationFolder: '/home/azureuser/docker-multi-domain/site3/data'
                 - task: Bash@3
                   inputs:
                     targetType: 'inline'
