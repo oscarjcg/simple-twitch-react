@@ -19,3 +19,10 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+
+jobs:  
+- deployment: VMDeploy
+  displayName: web
+  environment:
+    name:  Virtual Maquine Linux
+    resourceType: VirtualMachine
