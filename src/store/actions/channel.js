@@ -19,7 +19,7 @@ export const fetchChannelsFail = (error) => {
 
 export const fetchChannels = () => {
     return dispatch => {
-        axios.get('/channels')
+        axios.get('/api/channel')
             .then(res => {
                 let channels = res.data.map(channel => {
                     return {
@@ -50,7 +50,7 @@ export const fetchChannelByNameFail = (error) => {
 
 export const fetchByNameChannel = (channelName) => {
     return dispatch => {
-        axios.get('/channels/name/' + channelName)
+        axios.get('/api/channel/byname/' + channelName)
             .then(res => {
                 let channel = res.data;
                 dispatch(fetchChannelByNameSuccess(channel));

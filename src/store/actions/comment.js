@@ -20,7 +20,7 @@ export const fetchCommentsFail = (error) => {
 export const fetchComments = (channelId) => {
     return dispatch => {
         console.log("fetchComments");
-        axios.get('/comments/' + channelId)
+        axios.get('api/comment/' + channelId)
             .then(res => {                
                 let comments = res.data.map(comment => {
                     return comment;               
@@ -51,9 +51,10 @@ export const fetchCommentsByNameFail = (error) => {
 
 export const fetchCommentsByName = (channelName) => {
     return dispatch => {
-        axios.get('/comments/name/' + channelName)
+        axios.get('/api/comment/ByChannelName/' + channelName)
             .then(res => {                
                 let comments = res.data.map(comment => {
+                    comment.comment = comment.text
                     return comment;               
                 });            
 
@@ -81,11 +82,12 @@ export const addCommentFail = (error) => {
 
 export const addComment = (channelId, comment, author) => {
     return dispatch => {
-        axios.post('/comments', {
-            channel_id: channelId,
-            author: author,
-            comment:comment
-        })
+        var bodyFormData = new FormData();
+        bodyFormData.append('channel_id', channelId);
+        bodyFormData.append('author', author);
+        bodyFormData.append('comment', comment);
+
+        axios.post('/api/comment', bodyFormData)
         .then(res => {              
             dispatch(addCommentSuccess());
         })

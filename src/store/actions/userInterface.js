@@ -101,12 +101,18 @@ export const fetchSearchResults = (searchText) => {
             dispatch(fetchSearchResultsSuccess(null));
         } else {
             
-            axios.get('/search/' + searchText)
+            axios.get('/api/search/' + searchText)
                 .then(res => {                
-                    let results = res.data.map(result => {
+                    var channels =  res.data.channels.map(result => {
+                        result.type = "channel";
                         return result;               
-                    });            
-
+                    });    
+                    var categories =  res.data.categories.map(result => {
+                        result.type = "category";
+                        return result;               
+                    });
+                            
+                    let results = [...channels, ...categories];
                     dispatch(fetchSearchResultsSuccess(results));
                 })
                 .catch(err => {

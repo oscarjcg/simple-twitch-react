@@ -36,6 +36,7 @@ class SearchBar extends Component {
     buildResult() {
         // Search result in dropdown. Channels and categories
         let results = null;
+        console.log(this.props.searchResult);
         if (this.props.searchResult) {
             results = this.props.searchResult.map(result => {
                 if (result.type === "channel")

@@ -19,7 +19,7 @@ export const fetchCategoriesFail = (error) => {
 
 export const fetchCategories = () => {
     return dispatch => {
-        axios.get('/categories')
+        axios.get('/api/category')
             .then(res => {                
                 let categories = res.data.map(cat => {
                     return updateObject(cat, {});               
@@ -50,7 +50,7 @@ export const fetchCategoryChannelsFail = (error) => {
 
 export const fetchCategoryChannels = (name) => {
     return dispatch => {
-        axios.get('/categories/' + name + '/channels')
+        axios.get('/api/category/byname/' + name + '/channels')
             .then(res => {     
                 dispatch(fetchCategoryChannelsSuccess(res.data));
             })
@@ -77,7 +77,7 @@ export const fetchCategoryByNameFail = (error) => {
 
 export const fetchCategoryByName = (name) => {
     return dispatch => {
-        axios.get('/categories/name/' + name)
+        axios.get('/api/category/byname/' + name)
             .then(res => {     
                 dispatch(fetchCategoryByNameSuccess(res.data));
             })
