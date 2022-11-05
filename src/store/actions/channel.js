@@ -22,6 +22,7 @@ export const fetchChannels = () => {
         axios.get('/api/channel')
             .then(res => {
                 let channels = res.data.map(channel => {
+                    channel.type = channel.channelTypeId;
                     return {
                         ...channel
                     };
@@ -53,6 +54,7 @@ export const fetchByNameChannel = (channelName) => {
         axios.get('/api/channel/byname/' + channelName)
             .then(res => {
                 let channel = res.data;
+                channel.type = channel.channelTypeId;
                 dispatch(fetchChannelByNameSuccess(channel));
             })
             .catch(err => {
