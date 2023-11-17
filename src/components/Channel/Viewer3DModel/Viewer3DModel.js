@@ -3,7 +3,7 @@ import React from 'react';
 import classes from './Viewer3DModel.module.css';
 import Iframe from 'react-iframe'
 
-const URL_MODELS_3D = "https://models3d.oscarcatarigutierrez.com/?model=";
+const URL_MODELS_3D = "https://models3d.codename-project.com/?model=";
 
 const viewer3DModel = (props) => {
     const style = {

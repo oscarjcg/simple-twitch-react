@@ -3,7 +3,7 @@ import socketIOClient from "socket.io-client";
 import classes from './ChatClientSocket.module.css';
 
 
-const ENDPOINT = "https://st-node.oscarcatarigutierrez.com";
+const ENDPOINT = "https://st-node.codename-project.com";
 
 export default function ChatClientSocket(props) {
     const [totalConnections, setTotalConnections,] = useState(0);
