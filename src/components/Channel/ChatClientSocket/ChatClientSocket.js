@@ -3,13 +3,13 @@ import socketIOClient from "socket.io-client";
 import classes from './ChatClientSocket.module.css';
 
 
-const ENDPOINT = "https://st-node.codename-project.com";
+import { SOCKET_URL } from '../../../config';
 
 export default function ChatClientSocket(props) {
     const [totalConnections, setTotalConnections,] = useState(0);
 
     useEffect(() => {
-        const socket = socketIOClient(ENDPOINT);
+        const socket = socketIOClient(SOCKET_URL);
 
         socket.on("totalConnections", data => {
             setTotalConnections(data);

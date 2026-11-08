@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
+import { thunk } from 'redux-thunk';
 
 import './index.css';
 import App from './App';
@@ -14,7 +14,7 @@ import userInterfaceReducer from './store/reducers/userInterface';
 import commentReducer from './store/reducers/comment';
 
 
-const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
+const composeEnhancers = (process.env.NODE_ENV === 'development' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 
 const rootReducer = combineReducers({
@@ -35,7 +35,7 @@ const app = (
         </BrowserRouter>
     </Provider>    
 )
-ReactDOM.render(app, document.getElementById('root'));
+createRoot(document.getElementById('root')).render(app);
 
 
 serviceWorker.unregister();

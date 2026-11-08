@@ -26,8 +26,17 @@
 
 **Entorno de desarrollo**:
 * **Sistema operativo:** Windows 10 64 bits
-* **React:**  16.12.0
-* **Redux:** 7.1.3
+* **React:**  19.3.1
+* **Redux:** 5.0.1 (react-redux 9.3.1)
+
+**Configuración (URLs del backend)**:
+* Todas las URLs están en `.env` y se leen en `src/config.js`:
+    * `REACT_APP_API_URL`: API (axios)
+    * `REACT_APP_SOCKET_URL`: servidor socket.io del chat
+    * `REACT_APP_MODELS_3D_URL`: visor de modelos 3D
+* Para usar un backend local, crea `.env.local` (no se sube a git), por ejemplo:
+    * `REACT_APP_API_URL=http://localhost:8086/`
+* Reinicia `npm start` / el contenedor después de cambiar estos valores.
 
 **Docker**:
 * Run container with shell

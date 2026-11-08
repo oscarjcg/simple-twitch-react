@@ -1,4 +1,4 @@
-FROM node:16 as node
+FROM node:22 AS node
 
 WORKDIR /usr/src/simple-twitch-react
 
