@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Layout from './hoc/Layout/Layout';
@@ -20,12 +20,12 @@ class App extends Component {
       <React.Fragment>
         <Layout 
           headerHeight={this.headerHeightHandler}>       
-          <Switch>     
-            <Route path="/" exact component={Discover}></Route>
-            <Route path="/directory/game/:category" component={GameCont}></Route>  
-            <Route path="/directory" component={Browse}></Route>  
-            <Route path="/:channel" component={ChannelCont}></Route>  
-          </Switch>          
+          <Routes>
+            <Route path="/" element={<Discover />} />
+            <Route path="/directory/game/:category" element={<GameCont />} />
+            <Route path="/directory/*" element={<Browse />} />
+            <Route path="/:channel" element={<ChannelCont />} />
+          </Routes>
         </Layout>
       
       </React.Fragment>     

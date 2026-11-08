@@ -79,6 +79,8 @@ class Channel extends Component {
                             height={this.props.videoHeight}
                             width={this.props.videoWidth}/>;
                     break;
+                default:
+                    break;
             }
         }
 

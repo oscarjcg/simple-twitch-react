@@ -48,7 +48,7 @@ class SearchBar extends Component {
                                 height="30"
                                 className={classes.ImageChannel}
                                 onClick={() => this.props.selectSearch(result.type, result.name)}></img>
-                            <a onClick={() => this.props.selectSearch(result.type, result.name)} className={classes.SearchItem}>{result.name}</a>
+                            <a href={'/' + result.name} onClick={(e) => { e.preventDefault(); this.props.selectSearch(result.type, result.name); }} className={classes.SearchItem}>{result.name}</a>
                         </div>
                     );
                 else {
@@ -61,7 +61,7 @@ class SearchBar extends Component {
                                 width="30"
                                 className={classes.ImageCategory}
                                 onClick={() => this.props.selectSearch(result.type, result.name)}></img>
-                            <a onClick={() => this.props.selectSearch(result.type, result.name)} className={classes.SearchItem}>{result.name}</a>
+                            <a href={'/directory/game/' + result.name} onClick={(e) => { e.preventDefault(); this.props.selectSearch(result.type, result.name); }} className={classes.SearchItem}>{result.name}</a>
                         </div>
                     );
                 }

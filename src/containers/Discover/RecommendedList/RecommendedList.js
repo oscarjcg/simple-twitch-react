@@ -98,7 +98,7 @@ class RecommendedList extends Component {
         // Render
         return (
             <div className={classes.Content} >
-                <h4 className={classes.Title}>Recommended <a href="#" className={classes.LinkCategory}>{ this.props.name }</a></h4>
+                <h4 className={classes.Title}>Recommended <span className={classes.LinkCategory}>{ this.props.name }</span></h4>
 
                 <div ref={this.containerList}>
                     { list }

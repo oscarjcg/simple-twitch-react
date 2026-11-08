@@ -1,6 +1,5 @@
 import axios from '../../axios/axios-category';
 import * as actionsTypes from './actionTypes';
-import { updateObject } from '../../shared/utility';
 
 // Fetch comments
 export const fetchCommentsSuccess = (comments) => {

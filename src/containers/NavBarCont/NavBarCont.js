@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import withRouter from '../../shared/withRouter';
 
-import classes from './NavBarCont.module.css';
 import NavBar from '../../components/Navigation/NavBar/NavBar';
 import * as actions from '../../store/actions/index';
 import debounce from 'lodash.debounce';

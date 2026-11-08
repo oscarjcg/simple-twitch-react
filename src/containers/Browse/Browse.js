@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions/index';
-import { Switch, Route, Redirect, withRouter} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import withRouter from '../../shared/withRouter';
 import classes from './Browse.module.css';
 import NavTab from '../../components/Navigation/NavTab/NavTab';
 import CategoryList from '../../components/CategoryList/CategoryList';
@@ -33,7 +34,7 @@ class Browse extends Component {
     }
 
     searchHandler = (e) => {
-        if (e.target.value != undefined) {
+        if (e.target.value !== undefined) {
             this.props.onSearchTextTemp(e.target.value);
         }
 
@@ -53,7 +54,7 @@ class Browse extends Component {
         let filteredChannels = this.props.channels;
         let filteredCategories = this.props.categories;
 
-        if (this.props.location.pathname === (this.props.match.url + '/all')) {
+        if (this.props.location.pathname.replace(/\/$/, '') === '/directory/all') {
             if (this.props.searchText) {
                 filteredChannels = this.props.channels.filter(channel => {
                     return channel.name.toLowerCase().includes(this.props.searchText.toLowerCase())
@@ -76,23 +77,21 @@ class Browse extends Component {
                 <Filter search={this.searchHandler} searchButton={this.searchButtonHandler}></Filter>
 
                 <div className={classes.List}>
-                    <Switch>
+                    <Routes>
                         <Route
-                            path={this.props.match.url}
-                            exact
-                            render={() => <CategoryList
-                                            categories={filteredCategories}
-                                            selectCategory={this.selectCategoryHandler}
-                                            error={this.props.categoryError}></CategoryList>}></Route>
+                            index
+                            element={<CategoryList
+                                        categories={filteredCategories}
+                                        selectCategory={this.selectCategoryHandler}
+                                        error={this.props.categoryError}></CategoryList>} />
                         <Route
-                            path={this.props.match.url + '/all'}
-                            render={() => <ChannelList
-                                            key={this.props.location.key}
-                                            channels={filteredChannels}
-                                            selectChannel={this.selectChannelHandler}
-                                            error={this.props.channelError}></ChannelList>}></Route>
-
-                    </Switch>
+                            path="all"
+                            element={<ChannelList
+                                        key={this.props.location.key}
+                                        channels={filteredChannels}
+                                        selectChannel={this.selectChannelHandler}
+                                        error={this.props.channelError}></ChannelList>} />
+                    </Routes>
                 </div>
             </div>
         );

@@ -3,7 +3,7 @@ import React from 'react';
 import classes from './Game.module.css';
 import ChannelList from '../ChannelList/ChannelList';
 import NavTab from '../Navigation/NavTab/NavTab';
-import { withRouter } from 'react-router-dom';
+import withRouter from '../../shared/withRouter';
 import Filter from '../UI/Filter/Filter';
 import Spinner from '../UI/Spinner/Spinner';
 import Error from '../UI/Error/Error';

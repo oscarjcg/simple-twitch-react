@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
 
 import classes from './CommentList.module.css';
 import Comment from './Comment/Comment';
@@ -8,7 +8,7 @@ const CommentList = (props) => {
 
     let comments = null;
     const listRef = React.useRef();
-    const history = useHistory()
+    const location = useLocation();
 
     if (props.comments) {
         comments =
@@ -21,7 +21,9 @@ const CommentList = (props) => {
             ));
     }
 
-    useEffect(() => listRef.current.scrollTo(0, listRef.current.scrollHeight, "auto"), [history]);
+    useEffect(() => {
+        listRef.current.scrollTo(0, listRef.current.scrollHeight);
+    }, [location]);
 
 
     return (

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Game from '../../components/Game/Game';
 import * as actions from '../../store/actions/index';
-import Error from '../../components/UI/Error/Error';
+import withRouter from '../../shared/withRouter';
 
 class GameCont extends Component {
     componentDidMount() {        
@@ -17,11 +17,11 @@ class GameCont extends Component {
 
     searchHandler = (e) => {     
 
-        if (e.target.value != undefined) {
+        if (e.target.value !== undefined) {
             this.props.onSearchTextTemp(e.target.value);
         }
 
-        if (e.keyCode == 13) { // Enter
+        if (e.keyCode === 13) { // Enter
             // Search
             this.props.onSearchText(e.target.value);
             //e.target.value = "";
@@ -83,4 +83,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(GameCont);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GameCont));

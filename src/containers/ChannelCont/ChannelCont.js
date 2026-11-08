@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import classes from './ChannelCont.module.css';
 import Channel from '../../components/Channel/Channel';
 import * as actions from '../../store/actions/index';
+import withRouter from '../../shared/withRouter';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Error from '../../components/UI/Error/Error';
 
 const RATIO_16_9 = [16, 9];
-const RATIO_4_3 = [4, 3];
 
 class ChannelCont extends Component {
 
@@ -32,7 +32,7 @@ class ChannelCont extends Component {
 
     addCommentHandler = (e) => {
 
-        if (e.keyCode == 13) {// Enter
+        if (e.keyCode === 13) {// Enter
             // Add comment
             this.props.onAddComment(this.props.channel.id, e.target.value, "ReactApp");
             e.target.value = "";
@@ -44,7 +44,7 @@ class ChannelCont extends Component {
     }
 
      componentDidUpdate(prevProps) {
-         if (prevProps.channel != null && (this.props.match.params.channel != this.props.channel.name)) {
+         if (prevProps.channel != null && (this.props.match.params.channel !== this.props.channel.name)) {
             this.props.onLoadChannel(this.props.match.params.channel);
             this.props.onLoadComments(this.props.match.params.channel);
          }
@@ -105,4 +105,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChannelCont);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ChannelCont));

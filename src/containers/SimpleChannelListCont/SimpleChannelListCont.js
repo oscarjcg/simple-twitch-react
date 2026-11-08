@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import classes from './SimpleChannelListCont.module.css';
 import * as actions from '../../store/actions/index';
-import Spinner from '../../components/UI/Spinner/Spinner';
-import Error from '../../components/UI/Error/Error';
 import SimpleChannelList from '../../components/SimpleChannelList/SimpleChannelList';
-import { withRouter } from 'react-router-dom';
+import withRouter from '../../shared/withRouter';
 
 
 class SimpleChannelListCont extends Component {

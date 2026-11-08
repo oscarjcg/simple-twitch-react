@@ -1,39 +1,19 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { thunk } from 'redux-thunk';
 
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import categoryReducer from './store/reducers/category';
-import channelReducer from './store/reducers/channel';
-import userInterfaceReducer from './store/reducers/userInterface';
-import commentReducer from './store/reducers/comment';
-
-
-const composeEnhancers = (process.env.NODE_ENV === 'development' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-
-
-const rootReducer = combineReducers({
-    category: categoryReducer,
-    channel: channelReducer,
-    userInterface: userInterfaceReducer,
-    comment: commentReducer,
-});
-
-const store = createStore(rootReducer, composeEnhancers(
-    applyMiddleware(thunk)
-));
+import store from './store';
 
 const app = (
     <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
             <App />
         </BrowserRouter>
-    </Provider>    
+    </Provider>
 )
 createRoot(document.getElementById('root')).render(app);
 

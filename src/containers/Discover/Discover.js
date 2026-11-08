@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions/index';
+import withRouter from '../../shared/withRouter';
 
 import classes from './Discover.module.css';
 import RecommendedList from './RecommendedList/RecommendedList';
@@ -55,4 +56,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Discover);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Discover));

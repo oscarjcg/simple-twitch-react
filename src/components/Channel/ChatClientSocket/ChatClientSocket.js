@@ -6,6 +6,7 @@ import classes from './ChatClientSocket.module.css';
 import { SOCKET_URL } from '../../../config';
 
 export default function ChatClientSocket(props) {
+    const { updateComments } = props;
     const [totalConnections, setTotalConnections,] = useState(0);
 
     useEffect(() => {
@@ -16,11 +17,11 @@ export default function ChatClientSocket(props) {
         });
 
         socket.on("newMessage", data => {
-            props.updateComments();
+            updateComments();
         });
 
         return () => socket.disconnect();
-    }, []);
+    }, [updateComments]);
 
     return (
         <p className={classes.Text}>

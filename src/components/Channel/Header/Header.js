@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import withRouter from '../../../shared/withRouter';
 
 import classes from './Header.module.css';
 import ChannelDetail from './ChannelDetail/ChannelDetail';
