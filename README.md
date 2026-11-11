@@ -39,12 +39,13 @@
 * Reinicia `npm start` / el contenedor después de cambiar estos valores.
 
 **Docker**:
-* Run container with shell
-    * `docker compose run --rm -p 3001:3000 st-react bash`
-* Inside container install packages and exit
-	* `npm install`
-	* `exit`
-* Run docker compose and it will start npm start (http://localhost:3001)
+* Start the dev server (http://localhost:3001). The first run installs packages into the `node_modules` volume.
     * `docker compose up`
-* Delete container (not image and node_modules)
+* Production build (output in `build/`)
+    * `docker compose run --rm st-react-build`
+* After changing `package.json`, reinstall packages
+    * `docker compose run --rm st-react npm install`
+* Delete container (keeps image and `node_modules` volume)
     * `docker compose down`
+* Delete container and `node_modules` volume (clean reinstall on next start)
+    * `docker compose down -v`

@@ -1,18 +1,26 @@
+x-st-react: &st-react
+  build:
+    context: .
+    dockerfile: Dockerfile
+  volumes:
+    - .:/usr/src/simple-twitch-react
+    - node_modules:/usr/src/simple-twitch-react/node_modules
+
 services:
   st-react:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    <<: *st-react
+    container_name: st-react
     ports:
       - "3001:3000"
-    container_name: st-react
-    volumes:
-       - .:/usr/src/simple-twitch-react
-       - node_modules:/usr/src/simple-twitch-react/node_modules
     environment:
       - WATCHPACK_POLLING=true
       - WDS_SOCKET_PORT=3001
     command: [sh, -c, "[ -d node_modules/.bin ] || npm install; npm start"]
+
+  st-react-build:
+    <<: *st-react
+    profiles: [build]
+    command: [sh, -c, "[ -d node_modules/.bin ] || npm install; npm run build"]
 
 volumes:
   node_modules:
