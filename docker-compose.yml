@@ -8,7 +8,11 @@ services:
     container_name: st-react
     volumes:
        - .:/usr/src/simple-twitch-react
+       - node_modules:/usr/src/simple-twitch-react/node_modules
     environment:
       - WATCHPACK_POLLING=true
       - WDS_SOCKET_PORT=3001
-    command: [npm, start]
+    command: [sh, -c, "[ -d node_modules/.bin ] || npm install; npm start"]
+
+volumes:
+  node_modules:
