@@ -22,5 +22,23 @@ services:
     profiles: [build]
     command: [sh, -c, "[ -d node_modules/.bin ] || npm install; npm run build"]
 
+  st-react-test:
+    <<: *st-react
+    profiles: [test]
+    environment:
+      - CI=true
+    command: [sh, -c, "[ -d node_modules/.bin ] || npm install; npm run test:ci"]
+
+  st-react-e2e:
+    <<: *st-react
+    build: !reset null
+    image: mcr.microsoft.com/playwright:v1.65.1-noble
+    profiles: [e2e]
+    working_dir: /usr/src/simple-twitch-react
+    ipc: host
+    environment:
+      - CI=true
+    command: [sh, -c, "[ -d node_modules/.bin ] || npm install; npm run test:e2e"]
+
 volumes:
   node_modules:

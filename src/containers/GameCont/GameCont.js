@@ -52,7 +52,7 @@ class GameCont extends Component {
                     channels={filteredChannels}
                     selectChannel={this.selectChannelHandler}
                     channelError={this.props.categoryError}
-                    categoryError={this.props.channelError}
+                    categoryError={this.props.categoryError}
                     search={this.searchHandler} 
                     searchButton={this.searchButtonHandler}></Game>
             </div>            
