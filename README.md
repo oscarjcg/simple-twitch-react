@@ -1,5 +1,8 @@
 # SimpleTwitch
 
+[![Build](https://github.com/oscarjcg/simple-twitch-react/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/oscarjcg/simple-twitch-react/actions/workflows/build.yml)
+[![Tests](https://github.com/oscarjcg/simple-twitch-react/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/oscarjcg/simple-twitch-react/actions/workflows/tests.yml)
+
 
 **Web**: https://st-react.codename-project.com
 

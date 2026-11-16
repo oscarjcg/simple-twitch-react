@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install packages
+        run: docker compose run --rm -T st-react npm ci
+
+      - name: Production build
+        run: docker compose --profile build run --rm -T st-react-build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build/
+          retention-days: 7
