@@ -1,0 +1,124 @@
+import React, { Component } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
+
+import classes from './SearchBar.module.css';
+import SearchIcon from '../../../shared/Icons/SearchIcon';
+import type { RootState } from '../../../store';
+import type { SearchHandler, SearchResult, SearchResultType } from '../../../types';
+
+interface OwnProps {
+    search: SearchHandler;
+    searchButton: () => void;
+    searchResult?: SearchResult[] | null;
+    selectSearch?: (type: SearchResultType, name: string) => void;
+    visibilitySearchResults?: (visibility: boolean) => void;
+}
+
+const mapStateToProps = (state: RootState) => {
+    return {
+        visibilityNavBarSearchResults: state.userInterface.visibilityNavBarSearchResults
+    };
+};
+
+const connector = connect(mapStateToProps);
+
+type SearchBarProps = OwnProps & ConnectedProps<typeof connector>;
+
+class SearchBar extends Component<SearchBarProps> {
+
+    wrapperRef = React.createRef<HTMLDivElement>();
+
+    constructor(props: SearchBarProps) {
+        super(props);
+
+        this.handleClickOutside = this.handleClickOutside.bind(this);
+    }
+
+    componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
+    handleClickOutside(event: MouseEvent) {
+        if (this.wrapperRef && !this.wrapperRef.current!.contains(event.target as Node)) {
+            if (this.props.visibilitySearchResults)
+                this.props.visibilitySearchResults(false);
+        }
+    }
+
+    buildResult() {
+        // Search result in dropdown. Channels and categories
+        let results = null;
+        console.log(this.props.searchResult);
+        if (this.props.searchResult) {
+            results = this.props.searchResult.map(result => {
+                if (result.type === "channel")
+                    return (
+                        <div className={classes.Container} key={result.name}>
+                            <img
+                                src={result.image}
+                                alt={result.name}
+                                height="30"
+                                className={classes.ImageChannel}
+                                onClick={() => this.props.selectSearch?.(result.type, result.name)}></img>
+                            <a href={'/' + result.name} onClick={(e) => { e.preventDefault(); this.props.selectSearch?.(result.type, result.name); }} className={classes.SearchItem}>{result.name}</a>
+                        </div>
+                    );
+                else {
+                    return (
+                        <div className={classes.Container} key={result.name}>
+                            <img
+                                src={result.image}
+                                alt={result.name}
+                                height="30"
+                                width="30"
+                                className={classes.ImageCategory}
+                                onClick={() => this.props.selectSearch?.(result.type, result.name)}></img>
+                            <a href={'/directory/game/' + result.name} onClick={(e) => { e.preventDefault(); this.props.selectSearch?.(result.type, result.name); }} className={classes.SearchItem}>{result.name}</a>
+                        </div>
+                    );
+                }
+            });
+        }
+        return results;
+    }
+
+    render () {
+        let results = this.buildResult();
+        if (!this.props.visibilityNavBarSearchResults)
+            results = null;
+
+        return (
+            <div ref={this.wrapperRef} className={classes.ContainerSearchBar}>
+                <div className={[classes.SearchBar, classes.ActivePurple].join(' ')}>
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        onChange={this.props.search}
+                        onKeyDown={this.props.search}></input>
+
+                        <div className={classes.SearchItemContainer}>
+                            { results }
+                        </div>
+
+                </div>
+
+                <div
+                    className={classes.IconContainer}
+                    onClick={this.props.searchButton}>
+                    <SearchIcon
+                        width={36}
+                        fill="rgb(85, 85, 85)"
+                        color="white"
+                        className={classes.Icon}></SearchIcon>
+                </div>
+            </div>
+        );
+    }
+
+};
+
+export default connector(SearchBar);

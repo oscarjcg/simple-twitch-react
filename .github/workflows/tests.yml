@@ -21,6 +21,9 @@ jobs:
       - name: Install packages
         run: docker compose run --rm -T st-react npm ci
 
+      - name: Type check
+        run: docker compose run --rm -T st-react npm run typecheck
+
       - name: Unit tests with coverage
         run: docker compose --profile test run --rm -T st-react-test npm run test:coverage
 
