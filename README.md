@@ -30,6 +30,7 @@
 * **Operating system:** Windows 10 64-bit
 * **React:**  19.3.1
 * **Redux:** 5.0.1 (react-redux 9.3.1)
+* **TypeScript:** 5 (`strict` mode, see `tsconfig.json`). Domain types live in `src/types.ts`; store types (`RootState`, `AppDispatch`, `AppThunk`) in `src/store/index.ts`
 
 **Configuration (backend URLs)**:
 * All URLs are in `.env` and are read in `src/config.js`:
@@ -53,7 +54,9 @@
     * `docker compose down -v`
 
 **Tests** (all with Docker; the backend is mocked, so no network or backend is needed):
-* Unit tests (Jest + Testing Library), `*.test.js` next to each file in `src/`
+* Type check (Jest does not check types, the dev server and `build` do but skip test files)
+    * `docker compose run --rm st-react npm run typecheck`
+* Unit tests (Jest + Testing Library), `*.test.ts(x)` next to each file in `src/`
     * Once: `docker compose run --rm st-react-test`
     * Watch mode: `docker compose run --rm st-react npm test`
     * Coverage (in `coverage/`): `docker compose run --rm st-react npm run test:coverage`
